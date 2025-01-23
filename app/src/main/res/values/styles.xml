@@ -4,7 +4,7 @@
     
     <style name="small_rounded_button" >
         <item name="android:backgroundTint">@color/primary</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraSmall</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
     </style>
     
 </resources>
