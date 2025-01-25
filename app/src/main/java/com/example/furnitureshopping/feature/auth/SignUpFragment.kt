@@ -6,24 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.furnitureshopping.R
-import com.example.furnitureshopping.databinding.FragmentLoginBinding
+import com.example.furnitureshopping.databinding.FragmentSignUpBinding
+import com.example.furnitureshopping.extensions.asConfirmPasswordInput
 import com.example.furnitureshopping.extensions.asEmailInput
+import com.example.furnitureshopping.extensions.asGoBack
+import com.example.furnitureshopping.extensions.asNameInput
 import com.example.furnitureshopping.extensions.asPasswordInput
-import com.example.furnitureshopping.extensions.asSignUpButton
 
-class LoginFragment : Fragment() {
-
-    private lateinit var binding: FragmentLoginBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+class SignUpFragment : Fragment() {
+    private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentLoginBinding.inflate(inflater, container, false).apply {
+    ) = FragmentSignUpBinding.inflate(inflater, container, false).apply {
         binding = this
     }.root
 
@@ -32,7 +28,10 @@ class LoginFragment : Fragment() {
         binding.run {
             emailTextField.asEmailInput()
             passwordTextField.asPasswordInput()
-            signUpButton.asSignUpButton()
+            confirmPasswordTextField.asConfirmPasswordInput(passwordTextField)
+            nameTextField.asNameInput()
+            signInButton.asGoBack()
         }
+
     }
 }

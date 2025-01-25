@@ -14,3 +14,9 @@ fun EditText?.asPasswordInput() {
         error = if (!"$text".isValidPassword()) "Password is required" else null
     }
 }
+
+fun EditText?.asNameInput() {
+    this?.doOnTextChanged { text, _, _, _ ->
+        error = if (!"$text".isValidName()) "Name is required" else null
+    }
+}

@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
 import com.example.furnitureshopping.R
 import com.example.furnitureshopping.databinding.ActivityAuthBinding
 import com.example.furnitureshopping.extensions.asEmailInput
@@ -22,6 +23,15 @@ class AuthActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        supportFragmentManager.commit {
+            setCustomAnimations(
+                R.anim.slide_in, // enter
+                R.anim.fade_out, // exit
+                R.anim.fade_in, // popEnter
+                R.anim.slide_out // popExit
+            )
         }
     }
 }

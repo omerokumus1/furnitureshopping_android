@@ -10,3 +10,9 @@ fun String?.isValidPassword(): Boolean {
 
 fun onClickLogin(email: String?, password: String?) = email.isValidEmail() && password.isValidPassword()
 
+
+fun String?.isValidName(): Boolean {
+    return this?.let {
+        (it.isNotEmpty() || it.isNotBlank()) && it.length >= 3
+    } ?: false
+}
