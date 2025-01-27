@@ -7,36 +7,11 @@
     tools:context=".feature.auth.LoginFragment">
 
     <include
-        layout="@layout/horizontal_divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/head_icon"
-        app:layout_constraintEnd_toStartOf="@id/head_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/head_icon" />
-
-    <ImageView
-        android:id="@+id/head_icon"
-        android:layout_width="wrap_content"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_couch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <include
-        layout="@layout/horizontal_divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintBottom_toBottomOf="@id/head_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/head_icon"
-        app:layout_constraintTop_toTopOf="@id/head_icon" />
+        layout="@layout/auth_header"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/hello_text"
@@ -49,7 +24,7 @@
         android:textColor="@color/text_secondary"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head_icon" />
+        app:layout_constraintTop_toBottomOf="@id/header" />
 
     <TextView
         android:id="@+id/welcome_back_text"
