@@ -8,17 +8,13 @@ import android.view.ViewGroup
 import com.example.furnitureshopping.R
 import com.example.furnitureshopping.databinding.FragmentLoginBinding
 import com.example.furnitureshopping.extensions.asEmailInput
+import com.example.furnitureshopping.extensions.asForgotPasswordButton
 import com.example.furnitureshopping.extensions.asPasswordInput
 import com.example.furnitureshopping.extensions.asSignUpButton
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +29,7 @@ class LoginFragment : Fragment() {
             emailTextField.asEmailInput()
             passwordTextField.asPasswordInput()
             signUpButton.asSignUpButton()
+            forgotPasswordButton.asForgotPasswordButton()
         }
     }
 }
