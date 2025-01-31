@@ -30,7 +30,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/gelasio_bold"
         android:text="HOME BEAUTIFUL"
-        android:textColor="#303030"
+        android:textColor="@color/text_black"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first_text" />

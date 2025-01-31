@@ -5,4 +5,8 @@
     <color name="primary">#242424</color>
     <color name="text_secondary">#808080</color>
     <color name="transparent">#00000000</color>
+    <color name="disabled_field">#F5F5F5</color>
+    <color name="text_black">#303030</color>
+
+
 </resources>
