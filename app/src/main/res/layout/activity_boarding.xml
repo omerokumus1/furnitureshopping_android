@@ -17,7 +17,7 @@
         android:fontFamily="@font/gelasio_semibold"
         android:letterSpacing="0.05"
         android:text="MAKE YOUR"
-        android:textColor="#606060"
+        android:textColor="@color/text_gray"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
