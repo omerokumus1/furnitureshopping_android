@@ -1,14 +1,14 @@
 package com.example.furnitureshopping.feature.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.furnitureshopping.R
+import androidx.fragment.app.Fragment
 import com.example.furnitureshopping.databinding.FragmentLoginBinding
 import com.example.furnitureshopping.extensions.asEmailInput
 import com.example.furnitureshopping.extensions.asForgotPasswordButton
+import com.example.furnitureshopping.extensions.asLoginButton
 import com.example.furnitureshopping.extensions.asPasswordInput
 import com.example.furnitureshopping.extensions.asSignUpButton
 
@@ -30,6 +30,7 @@ class LoginFragment : Fragment() {
             passwordTextField.asPasswordInput()
             signUpButton.asSignUpButton()
             forgotPasswordButton.asForgotPasswordButton()
+            loginButton.asLoginButton()
         }
     }
 }
