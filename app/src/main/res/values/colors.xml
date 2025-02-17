@@ -10,6 +10,7 @@
     <color name="text_gray">#606060</color>
     <color name="icon_gray">#99999999</color>
     <color name="grey2">#909090</color>
+    <color name="blur_grey">#F0F0F0</color>
 
 
 </resources>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.productdetail.ProductDetailActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/product_img"
+        android:layout_width="0dp"
+        android:layout_height="455dp"
+        android:layout_marginStart="52dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/bottomLeftRoundedImageView"
+        app:srcCompat="@drawable/drawer" />
+
+
+    <RelativeLayout
+        android:id="@+id/back_btn_container"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_bg"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="56dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_btn_container">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                app:cardCornerRadius="50dp"
+                app:strokeColor="@color/grey2"
+                app:strokeWidth="4dp">
+
+                <View
+                    android:id="@+id/first_color"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_circular"
+                    android:backgroundTint="@color/white" />
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="50dp"
+                app:strokeColor="@color/blur_grey"
+                app:strokeWidth="4dp">
+
+                <View
+                    android:id="@+id/second_color"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_circular"
+                    android:backgroundTint="#B4916C" />
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="50dp"
+                app:strokeColor="@color/blur_grey"
+                app:strokeWidth="4dp">
+
+                <View
+                    android:id="@+id/third_color"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_circular"
+                    android:backgroundTint="#E4CBAD" />
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

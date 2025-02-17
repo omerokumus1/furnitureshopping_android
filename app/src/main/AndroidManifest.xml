@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Furnitureshopping"
         tools:targetApi="31">
         <activity
+            android:name=".feature.productdetail.ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.auth.AuthActivity"
             android:exported="false" />
         <activity
