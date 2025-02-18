@@ -1,5 +1,6 @@
 package com.example.furnitureshopping.feature.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.furnitureshopping.R
 import com.example.furnitureshopping.databinding.FragmentHomeBinding
+import com.example.furnitureshopping.feature.productdetail.ProductDetailActivity
 
 class ProductListFragment : Fragment() {
     private var products = listOf(
@@ -95,7 +97,10 @@ class ProductListFragment : Fragment() {
         categoryAdapter = getCategoryItemAdapter()
 
         productAdapter = ProductItemAdapter(products) { productItem ->
-
+            Intent(requireContext(), ProductDetailActivity::class.java).apply {
+                putExtra("id", productItem.id)
+                startActivity(this)
+            }
         }
 
 

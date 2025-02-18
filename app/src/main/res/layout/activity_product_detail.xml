@@ -7,17 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".feature.productdetail.ProductDetailActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/product_img"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/product_img_pager"
         android:layout_width="0dp"
         android:layout_height="455dp"
         android:layout_marginStart="52dp"
-        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/bottomLeftRoundedImageView"
-        app:srcCompat="@drawable/drawer" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/product_img_tab_layout"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="32dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/product_img_pager"
+        app:layout_constraintEnd_toEndOf="@id/product_img_pager"
+        app:layout_constraintStart_toStartOf="@id/product_img_pager"
+        app:tabBackground="@drawable/product_img_tab_pager_selector"
+        app:tabGravity="center"
+        app:tabMode="fixed"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="10dp"
+        app:tabPaddingStart="10dp"
+        app:tabRippleColor="@color/transparent" />
 
 
     <RelativeLayout
