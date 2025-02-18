@@ -8,14 +8,15 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/product_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="157dp"
+        android:layout_height="236dp"
+        android:contentDescription="Product image"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageView"
-        app:srcCompat="@drawable/lamb" />
+        tools:srcCompat="@drawable/lamp" />
 
     <ImageView
         android:id="@+id/shopping_bag_icon"
