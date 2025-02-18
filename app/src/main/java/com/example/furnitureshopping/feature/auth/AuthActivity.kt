@@ -8,8 +8,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import com.example.furnitureshopping.R
 import com.example.furnitureshopping.databinding.ActivityAuthBinding
-import com.example.furnitureshopping.extensions.asEmailInput
-import com.example.furnitureshopping.extensions.asPasswordInput
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
@@ -19,7 +17,7 @@ class AuthActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
