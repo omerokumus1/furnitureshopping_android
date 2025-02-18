@@ -7,40 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.furnitureshopping.R
+import com.example.furnitureshopping.data.ProductData
 import com.example.furnitureshopping.databinding.FragmentHomeBinding
 import com.example.furnitureshopping.feature.productdetail.ProductDetailActivity
 
 class ProductListFragment : Fragment() {
-    private var products = listOf(
-        ProductItem(
-            1,
-            "Black Simple Lamp",
-            12.00,
-            R.drawable.lamb,
-            {}
-        ),
-        ProductItem(
-            2,
-            "Minimal Stand",
-            25.00,
-            R.drawable.drawer,
-            {}
-        ),
-        ProductItem(
-            3,
-            "Coffee Chair",
-            20.00,
-            R.drawable.chair,
-            {}
-        ),
-        ProductItem(
-            4,
-            "Simple Desk",
-            50.00,
-            R.drawable.drawer2,
-            {}
-        )
-    )
     private var categories = listOf(
         CategoryItem(
             id = 1,
@@ -96,7 +67,7 @@ class ProductListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         categoryAdapter = getCategoryItemAdapter()
 
-        productAdapter = ProductItemAdapter(products) { productItem ->
+        productAdapter = ProductItemAdapter(ProductData.productItemData) { productItem ->
             Intent(requireContext(), ProductDetailActivity::class.java).apply {
                 putExtra("id", productItem.id)
                 startActivity(this)
