@@ -3,13 +3,13 @@ package com.example.furnitureshopping.feature.productdetail
 class ProductDetailRepository {
     private val dataSource = ProductDetailRemoteDataSource()
 
-    fun getDrawerImgList() = dataSource.drawerImgList
+    fun getDrawerDetail() = dataSource.drawerDetail
 
-    fun getDrawer2ImgList() = dataSource.drawer2ImgList
+    fun getDrawer2Detail() = dataSource.drawer2Detail
 
-    fun getChairImgList() = dataSource.chairImgList
+    fun getChairDetail() = dataSource.chairDetail
 
-    fun getLampImgList() = dataSource.lampImgList
+    fun getLampDetail() = dataSource.lampDetail
 
 
 }

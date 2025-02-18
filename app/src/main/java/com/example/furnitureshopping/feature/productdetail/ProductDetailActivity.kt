@@ -10,8 +10,10 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.furnitureshopping.databinding.ActivityProductDetailBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import java.util.Locale
 
 class ProductDetailActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityProductDetailBinding
     private val viewModel: ProductDetailViewModel by viewModels()
 
@@ -28,8 +30,15 @@ class ProductDetailActivity : AppCompatActivity() {
             insets
         }
         observeViewModel()
-        viewModel.getImgList(intent.getIntExtra("id", 1))
+        viewModel.getProductDetail(intent.getIntExtra("id", 1))
+        setBackButton()
         initProductImgPager()
+    }
+
+    private fun setBackButton() {
+        binding.backBtnContainer.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun initProductImgPager() {
@@ -61,9 +70,14 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.imgListLiveData.observe(this) {
-            productImgPagerAdapter.productImgList = it
+        viewModel.productDetailLiveData.observe(this) {
+            productImgPagerAdapter.productImgList = it.images
             productImgPagerAdapter.notifyDataSetChanged()
+            binding.apply {
+                productName.text = it.name
+                productPrice.text = String.format(Locale.ENGLISH, "$%.2f", it.price)
+                productDescription.text = it.description
+            }
         }
     }
 }

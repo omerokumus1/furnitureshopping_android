@@ -6,16 +6,16 @@ import androidx.lifecycle.ViewModel
 
 class ProductDetailViewModel : ViewModel() {
     private val repository = ProductDetailRepository()
-    private val imgListMutableLiveData = MutableLiveData<List<Int>>()
-    val imgListLiveData: LiveData<List<Int>> = imgListMutableLiveData
+    private val productDetailMutableLiveData = MutableLiveData<ProductDetail>()
+    val productDetailLiveData: LiveData<ProductDetail> = productDetailMutableLiveData
 
-    fun getImgList(id: Int) {
-        imgListMutableLiveData.value = when (id) {
-            1 -> repository.getLampImgList()
-            2 -> repository.getDrawerImgList()
-            3 -> repository.getChairImgList()
-            4 -> repository.getDrawer2ImgList()
-            else -> emptyList()
+    fun getProductDetail(id: Int) {
+        productDetailMutableLiveData.value = when (id) {
+            1 -> repository.getLampDetail()
+            2 -> repository.getDrawerDetail()
+            3 -> repository.getChairDetail()
+            4 -> repository.getDrawer2Detail()
+            else -> null
         }
     }
 

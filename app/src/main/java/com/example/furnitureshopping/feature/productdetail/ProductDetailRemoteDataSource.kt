@@ -1,29 +1,14 @@
 package com.example.furnitureshopping.feature.productdetail
 
-import com.example.furnitureshopping.R
+import com.example.furnitureshopping.data.ProductData
 
 class ProductDetailRemoteDataSource {
-    val drawerImgList = arrayListOf(
-        R.drawable.drawer,
-        R.drawable.drawer,
-        R.drawable.drawer,
-    )
 
-    val drawer2ImgList = arrayListOf(
-        R.drawable.drawer2,
-        R.drawable.drawer2,
-        R.drawable.drawer2,
-        R.drawable.drawer2,
-    )
+    val lampDetail = ProductData.productDetailData.find { it.id == 1 }
 
-    val chairImgList = arrayListOf(
-        R.drawable.chair,
-        R.drawable.chair,
-    )
+    val drawerDetail = ProductData.productDetailData.find { it.id == 2 }
 
-    val lampImgList = arrayListOf(
-        R.drawable.lamb,
-        R.drawable.lamb,
-        R.drawable.lamb,
-    )
+    val chairDetail = ProductData.productDetailData.find { it.id == 3 }
+
+    val drawer2Detail = ProductData.productDetailData.find { it.id == 4 }
 }
