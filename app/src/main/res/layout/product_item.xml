@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp">
 
@@ -36,7 +36,7 @@
         android:fontFamily="@font/nunito_sans"
         android:textColor="@color/text_gray"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/product_img"
         app:layout_constraintTop_toBottomOf="@id/product_img"
         tools:text="Black Simple Lamp" />
 
