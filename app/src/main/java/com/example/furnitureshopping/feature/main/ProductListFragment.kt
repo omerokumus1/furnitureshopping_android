@@ -16,39 +16,39 @@ class ProductListFragment : Fragment() {
         CategoryItem(
             id = 1,
             categoryIcon = R.drawable.ic_star,
+            categoryIconSelected = R.drawable.ic_star_filled,
             name = "Popular",
             isClicked = true,
-            onClick = {}
         ),
         CategoryItem(
             id = 2,
             categoryIcon = R.drawable.ic_chair,
+            categoryIconSelected = R.drawable.ic_chair_filled,
             name = "Chair",
-            onClick = {}
         ),
         CategoryItem(
             id = 3,
             categoryIcon = R.drawable.ic_table,
+            categoryIconSelected = R.drawable.ic_table_filled,
             name = "Table",
-            onClick = {}
         ),
         CategoryItem(
             id = 4,
             categoryIcon = R.drawable.ic_sofa,
+            categoryIconSelected = R.drawable.ic_sofa_filled,
             name = "Armchair",
-            onClick = {}
         ),
         CategoryItem(
             5,
             categoryIcon = R.drawable.ic_bed,
+            categoryIconSelected = R.drawable.ic_bed_filled,
             name = "Bed",
-            onClick = {}
         ),
         CategoryItem(
             6,
-            categoryIcon = R.drawable.ic_lamb,
+            categoryIcon = R.drawable.ic_lamp,
+            categoryIconSelected = R.drawable.ic_lamp_filled,
             name = "Lamp",
-            onClick = {}
         ),
     )
 
@@ -83,11 +83,16 @@ class ProductListFragment : Fragment() {
 
     private fun getCategoryItemAdapter() = CategoryItemAdapter(categories) { categoryItem ->
         val previousClicked = categories.find { it.isClicked }
-        categories = categories.map {
-            if (it.id == previousClicked?.id) it.copy(isClicked = false)
-            else it.copy(isClicked = it.id == categoryItem.id)
+        var prevIndex = 0
+        var clickedIndex = 0
+        categories = categories.mapIndexed { index, it ->
+            if (it.id == previousClicked?.id) {
+                it.copy(isClicked = false).also { prevIndex = index }
+            } else it.copy(isClicked = it.id == categoryItem.id)
+                .also { if (it.id == categoryItem.id) clickedIndex = index }
         }
         categoryAdapter.values = categories
-        categoryAdapter.notifyDataSetChanged()
+        categoryAdapter.notifyItemChanged(prevIndex)
+        categoryAdapter.notifyItemChanged(clickedIndex)
     }
 }
