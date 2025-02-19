@@ -8,7 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.furnitureshopping.databinding.ActivityProductDetailBinding
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import java.util.Locale
 
@@ -48,22 +47,6 @@ class ProductDetailActivity : AppCompatActivity() {
                 productImgTabLayout,
                 productImgPager
             ) { tab, position -> }.attach()
-
-            // TODO Animation not working
-            productImgTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    tab?.view?.animate()?.scaleX(1.2f)?.scaleY(1.2f)?.setDuration(200)?.start()
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    tab?.view?.animate()?.scaleX(1.0f)?.scaleY(1.0f)?.setDuration(200)?.start()
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-                    // No change needed on reselection
-                }
-            })
-
             productImgPager.setPageTransformer(MarginPageTransformer(8))
 
         }
