@@ -1,7 +1,7 @@
 package com.omerokumus.furnitureshopping.data
 
 import com.omerokumus.furnitureshopping.R
-import com.omerokumus.furnitureshopping.feature.main.ProductItem
+import com.omerokumus.furnitureshopping.feature.main.home.ProductItem
 import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetail
 
 object ProductData {

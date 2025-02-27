@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main
+package com.omerokumus.furnitureshopping.feature.main.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
