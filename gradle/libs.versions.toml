@@ -1,6 +1,6 @@
 [versions]
-agp = "8.8.1"
-databindingCompiler = "8.8.1"
+agp = "8.8.2"
+databindingCompiler = "8.8.2"
 fragmentKtx = "1.8.5"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
