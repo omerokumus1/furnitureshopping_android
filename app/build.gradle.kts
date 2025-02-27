@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.furnitureshopping"
+    namespace = "com.omerokumus.furnitureshopping"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.furnitureshopping"
+        applicationId = "com.omerokumus.furnitureshopping"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
