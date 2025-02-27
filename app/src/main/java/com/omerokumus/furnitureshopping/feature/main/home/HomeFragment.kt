@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.omerokumus.furnitureshopping.R
+import com.omerokumus.furnitureshopping.base.FurnitureBaseFragment
+import com.omerokumus.furnitureshopping.base.data.ToolbarLeftIconData
+import com.omerokumus.furnitureshopping.base.data.ToolbarRightIconData
+import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
+import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.data.ProductData
 import com.omerokumus.furnitureshopping.databinding.FragmentHomeBinding
 import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetailActivity
 
-class ProductListFragment : Fragment() {
+class HomeFragment : FurnitureBaseFragment() {
     private var categories = listOf(
         CategoryItem(
             id = 1,
@@ -65,6 +69,7 @@ class ProductListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         categoryAdapter = getCategoryItemAdapter()
 
         productAdapter = ProductItemAdapter(ProductData.productItemData) { productItem ->
@@ -74,11 +79,30 @@ class ProductListFragment : Fragment() {
             }
         }
 
-
         binding.run {
             categoryList.adapter = categoryAdapter
             productGrid.adapter = productAdapter
         }
+    }
+
+    private fun initToolbar() {
+        furnitureBaseActivity.run {
+            setToolbarTitleData(ToolbarTitleData(title = "Make Home"))
+            setToolbarSubTitleData(ToolbarSubTitleData(subTitle = "BEAUTIFUL"))
+            setToolbarLeftIconData(
+                ToolbarLeftIconData(
+                    visibility = View.GONE,
+                    contentDescription = ""
+                )
+            )
+            setToolbarRightIconData(
+                ToolbarRightIconData(
+                    visibility = View.GONE,
+                    contentDescription = ""
+                )
+            )
+        }
+
     }
 
     private fun getCategoryItemAdapter() = CategoryItemAdapter(categories) { categoryItem ->
