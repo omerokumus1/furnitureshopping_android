@@ -62,7 +62,4 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-    // DataBinding
-//    kapt(libs.androidx.databinding.compiler)
 }
