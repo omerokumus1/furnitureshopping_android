@@ -64,5 +64,5 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // DataBinding
-    kapt(libs.androidx.databinding.compiler)
+//    kapt(libs.androidx.databinding.compiler)
 }
