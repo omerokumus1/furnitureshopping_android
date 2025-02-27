@@ -1,13 +1,12 @@
 package com.example.furnitureshopping.feature.boarding
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.furnitureshopping.databinding.ActivityBoardingBinding
-import com.example.furnitureshopping.feature.auth.AuthActivity
+import com.example.furnitureshopping.extensions.asGetStartedButton
 
 class BoardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +20,7 @@ class BoardingActivity : AppCompatActivity() {
             insets
         }
 
-        binding.getStartedButton.setOnClickListener {
-            Intent(this, AuthActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
-        }
+        binding.getStartedButton.asGetStartedButton()
 
     }
 }
