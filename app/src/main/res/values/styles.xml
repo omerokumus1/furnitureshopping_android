@@ -23,6 +23,11 @@
         <item name="cornerSizeBottomLeft">50dp</item>
     </style>
 
+    <style name="circularImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 
     <!-- Bottom Navigation View Styles -->
     <style name="activeIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
