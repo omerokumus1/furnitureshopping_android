@@ -65,8 +65,9 @@ class BookmarksFragment : FurnitureBaseFragment() {
         }
     }
 
-    private fun onClickBookmarkItem() {
+    private fun onClickBookmarkItem(bookmarkItem: BookmarkItem) {
         Intent(requireContext(), ProductDetailActivity::class.java).also {
+            it.putExtra("id", bookmarkItem.productId)
             startActivity(it)
         }
     }

@@ -10,6 +10,7 @@ import java.util.Locale
 class BookmarkItemAdapter(
     private val bookmarkList: List<BookmarkItem>,
     private val onClick: () -> Unit
+    private val onClick: (BookmarkItem) -> Unit,
 ) :
     RecyclerView.Adapter<BookmarkItemAdapter.ViewHolder>() {
 
@@ -29,6 +30,10 @@ class BookmarkItemAdapter(
     inner class ViewHolder(private val binding: BookmarkItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(bookmarkItem: BookmarkItem, onClick: () -> Unit) {
+        fun bind(
+            bookmarkItem: BookmarkItem,
+            onClick: (BookmarkItem) -> Unit,
+        ) {
             binding.apply {
                 bookmarkTitle.text = bookmarkItem.name
                 bookmarkPrice.text = String.format(Locale.ENGLISH, "$%.2f", bookmarkItem.price)
@@ -36,6 +41,7 @@ class BookmarkItemAdapter(
                 if (bookmarkItem.isInCart) bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag_filled)
                 else bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag)
                 root.setOnClickListener { onClick() }
+                root.setOnClickListener { onClick(bookmarkItem) }
             }
         }
     }
