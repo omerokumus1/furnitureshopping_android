@@ -9,8 +9,8 @@ import java.util.Locale
 
 class BookmarkItemAdapter(
     private val bookmarkList: List<BookmarkItem>,
-    private val onClick: () -> Unit
     private val onClick: (BookmarkItem) -> Unit,
+    private val onRemove: (BookmarkItem) -> Unit
 ) :
     RecyclerView.Adapter<BookmarkItemAdapter.ViewHolder>() {
 
@@ -22,17 +22,17 @@ class BookmarkItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(bookmarkList[position], onClick)
+        holder.bind(bookmarkList[position], onClick, onRemove)
     }
 
     override fun getItemCount() = bookmarkList.size
 
     inner class ViewHolder(private val binding: BookmarkItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(bookmarkItem: BookmarkItem, onClick: () -> Unit) {
         fun bind(
             bookmarkItem: BookmarkItem,
             onClick: (BookmarkItem) -> Unit,
+            onRemove: (BookmarkItem) -> Unit
         ) {
             binding.apply {
                 bookmarkTitle.text = bookmarkItem.name
@@ -40,8 +40,8 @@ class BookmarkItemAdapter(
                 bookmarkImage.setImageResource(bookmarkItem.imageResId)
                 if (bookmarkItem.isInCart) bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag_filled)
                 else bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag)
-                root.setOnClickListener { onClick() }
                 root.setOnClickListener { onClick(bookmarkItem) }
+                bookmarkRemoveBtn.setOnClickListener { onRemove(bookmarkItem) }
             }
         }
     }

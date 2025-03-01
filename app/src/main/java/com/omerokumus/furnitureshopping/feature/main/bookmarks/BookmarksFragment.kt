@@ -36,7 +36,8 @@ class BookmarksFragment : FurnitureBaseFragment() {
             adapter =
                 BookmarkItemAdapter(
                     BookmarkData.bookmarkData,
-                    ::onClickBookmarkItem
+                    ::onClickBookmarkItem,
+                    ::onRemoveBookmarkItem
                 ).also { bookmarkAdapter = it }
             addItemDecoration(
                 BottomMarginItemDecoration(
@@ -70,5 +71,10 @@ class BookmarksFragment : FurnitureBaseFragment() {
             it.putExtra("id", bookmarkItem.productId)
             startActivity(it)
         }
+    }
+
+    private fun onRemoveBookmarkItem(bookmarkItem: BookmarkItem) {
+        BookmarkData.bookmarkData.remove(bookmarkItem)
+        bookmarkAdapter.notifyDataSetChanged()
     }
 }
