@@ -14,4 +14,8 @@
         android:name="com.omerokumus.furnitureshopping.feature.main.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bookmarksFragment"
+        android:name="com.omerokumus.furnitureshopping.feature.main.bookmarks.BookmarksFragment"
+        android:label="BookmarksFragment" />
 </navigation>

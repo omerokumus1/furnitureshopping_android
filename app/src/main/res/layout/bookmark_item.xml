@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bookmark_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        tools:src="@drawable/desk" />
+
+    <TextView
+        android:id="@+id/bookmark_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/bookmark_image"
+        app:layout_constraintTop_toTopOf="@id/bookmark_image"
+        tools:text="Desk" />
+
+    <TextView
+        android:id="@+id/bookmark_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:textColor="@color/text_black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/bookmark_title"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_title"
+        tools:text="$ 50.00" />
+
+    <ImageButton
+        android:id="@+id/bookmark_remove_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_circled_x"
+        app:layout_constraintEnd_toEndOf="@id/bookmark_shopping_bag"
+        app:layout_constraintStart_toStartOf="@id/bookmark_shopping_bag"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bookmark_shopping_bag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bookmark_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_shopping_bag_filled" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="#f0f0f0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookmark_image" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
