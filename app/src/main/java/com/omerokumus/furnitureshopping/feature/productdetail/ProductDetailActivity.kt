@@ -8,7 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
+import com.omerokumus.furnitureshopping.R
+import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.BookmarkItem
 import java.util.Locale
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -32,7 +35,34 @@ class ProductDetailActivity : AppCompatActivity() {
         viewModel.getProductDetail(intent.getIntExtra("id", 1))
         setBackButton()
         initProductImgPager()
+        setBookmarkClickListener()
     }
+
+    private fun setBookmarkClickListener() {
+        binding.bookmarkBtn.setOnClickListener {
+            if (isAlreadyBookmarked()) {
+                BookmarkData.bookmarkData.removeIf { bookmarkItem -> bookmarkItem.productId == viewModel.productDetailLiveData.value?.id }
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
+            } else {
+                viewModel.productDetailLiveData.value?.let {
+                    BookmarkData.bookmarkData.add(
+                        BookmarkItem(
+                            BookmarkData.bookmarkData.size,
+                            it.id,
+                            it.name,
+                            it.images.first(),
+                            it.price
+                        )
+                    )
+                    binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+                }
+            }
+        }
+    }
+
+    private fun isAlreadyBookmarked() = BookmarkData.bookmarkData.find { bookmarkItem ->
+        bookmarkItem.productId == viewModel.productDetailLiveData.value?.id
+    } != null
 
     private fun setBackButton() {
         binding.backBtnContainer.setOnClickListener {
@@ -60,6 +90,10 @@ class ProductDetailActivity : AppCompatActivity() {
                 productName.text = it.name
                 productPrice.text = String.format(Locale.ENGLISH, "$%.2f", it.price)
                 productDescription.text = it.description
+                BookmarkData.bookmarkData.find { bookmarkItem -> bookmarkItem.productId == it.id }
+                    ?.let {
+                        binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+                    }
             }
         }
     }

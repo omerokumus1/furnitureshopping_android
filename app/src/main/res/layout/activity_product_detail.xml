@@ -129,11 +129,11 @@
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/gelasio"
         android:textColor="@color/text_black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/product_img_pager"
         tools:text="Minimal Stand" />
@@ -142,14 +142,12 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:textColor="@color/text_black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/product_name"
         app:layout_constraintTop_toBottomOf="@id/product_name"
         tools:text="$ 25" />
 
@@ -157,7 +155,7 @@
     <!--        android:id="@+id/minus_btn"-->
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
     <!--        android:backgroundTint="#E5E5EA"-->
     <!--        android:src="@drawable/ic_minus"-->
     <!--        app:layout_constraintEnd_toEndOf="parent"-->
@@ -192,8 +190,7 @@
         android:id="@+id/product_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="20dp"
         android:fontFamily="@font/nunito_sans_light"
         android:textColor="@color/text_gray"
         android:textSize="16sp"
@@ -201,6 +198,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/product_price"
         tools:text="Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. " />
+
+    <ImageButton
+        android:id="@+id/bookmark_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_bg"
+        android:backgroundTint="#f0f0f0"
+        android:src="@drawable/ic_bookmark_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/product_description" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
