@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.base.FurnitureBaseFragment
+import com.omerokumus.furnitureshopping.base.data.ToolbarLeftIconData
+import com.omerokumus.furnitureshopping.base.data.ToolbarRightIconData
+import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
+import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.base.recyclerview.BottomMarginItemDecoration
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.FragmentBookmarksBinding
@@ -27,6 +31,7 @@ class BookmarksFragment : FurnitureBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         binding.bookmarksList.run {
             adapter =
                 BookmarkItemAdapter(
@@ -36,6 +41,25 @@ class BookmarksFragment : FurnitureBaseFragment() {
             addItemDecoration(
                 BottomMarginItemDecoration(
                     resources.getDimension(R.dimen.bookmarks_item_margin).toInt()
+                )
+            )
+        }
+    }
+
+    private fun initToolbar() {
+        furnitureBaseActivity.run {
+            setToolbarTitleData(ToolbarTitleData(visibility = View.GONE))
+            setToolbarSubTitleData(ToolbarSubTitleData("Favorites"))
+            setToolbarLeftIconData(
+                ToolbarLeftIconData(
+                    visibility = View.GONE,
+                    contentDescription = ""
+                )
+            )
+            setToolbarRightIconData(
+                ToolbarRightIconData(
+                    visibility = View.GONE,
+                    contentDescription = ""
                 )
             )
         }
