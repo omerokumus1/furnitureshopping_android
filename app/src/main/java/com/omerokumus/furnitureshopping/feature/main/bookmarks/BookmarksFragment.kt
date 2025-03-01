@@ -1,5 +1,6 @@
 package com.omerokumus.furnitureshopping.feature.main.bookmarks
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.omerokumus.furnitureshopping.base.FurnitureBaseFragment
 import com.omerokumus.furnitureshopping.base.recyclerview.BottomMarginItemDecoration
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.FragmentBookmarksBinding
+import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetailActivity
 
 class BookmarksFragment : FurnitureBaseFragment() {
 
@@ -25,12 +27,23 @@ class BookmarksFragment : FurnitureBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bookmarksList.adapter =
-            BookmarkItemAdapter(BookmarkData.bookmarkData).also { bookmarkAdapter = it }
-        binding.bookmarksList.addItemDecoration(
-            BottomMarginItemDecoration(
-                resources.getDimension(R.dimen.bookmarks_item_margin).toInt()
+        binding.bookmarksList.run {
+            adapter =
+                BookmarkItemAdapter(
+                    BookmarkData.bookmarkData,
+                    ::onClickBookmarkItem
+                ).also { bookmarkAdapter = it }
+            addItemDecoration(
+                BottomMarginItemDecoration(
+                    resources.getDimension(R.dimen.bookmarks_item_margin).toInt()
+                )
             )
-        )
+        }
+    }
+
+    private fun onClickBookmarkItem() {
+        Intent(requireContext(), ProductDetailActivity::class.java).also {
+            startActivity(it)
+        }
     }
 }
