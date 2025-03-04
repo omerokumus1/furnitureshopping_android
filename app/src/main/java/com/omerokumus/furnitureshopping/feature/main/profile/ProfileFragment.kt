@@ -47,7 +47,7 @@ class ProfileFragment : FurnitureBaseFragment() {
     private fun setToolbarSubtitle() {
         furnitureBaseActivity.setToolbarSubTitleData(
             ToolbarSubTitleData(
-                subTitle = "Profile",
+                subTitle = requireContext().getString(R.string.profile),
                 visibility = View.VISIBLE
             )
         )
@@ -57,7 +57,7 @@ class ProfileFragment : FurnitureBaseFragment() {
         furnitureBaseActivity.setToolbarRightIconData(ToolbarRightIconData(
             iconResId = R.drawable.ic_logout,
             visibility = View.VISIBLE,
-            contentDescription = "Logout",
+            contentDescription = requireContext().getString(R.string.log_out),
             onClick = {
                 Intent(requireContext(), AuthActivity::class.java).also {
                     startActivity(it)

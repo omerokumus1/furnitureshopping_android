@@ -1,5 +1,6 @@
 package com.omerokumus.furnitureshopping.feature.productdetail
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -88,13 +89,24 @@ class ProductDetailActivity : AppCompatActivity() {
             productImgPagerAdapter.notifyDataSetChanged()
             binding.apply {
                 productName.text = it.name
-                productPrice.text = String.format(Locale.ENGLISH, "$%.2f", it.price)
+                productPrice.text = root.resources.getString(
+                    R.string.price_format,
+                    String.format(getCurrentLocale(root.resources.configuration), "%.2f", it.price)
+                )
                 productDescription.text = it.description
                 BookmarkData.bookmarkData.find { bookmarkItem -> bookmarkItem.productId == it.id }
                     ?.let {
                         binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
                     }
             }
+        }
+    }
+
+    private fun getCurrentLocale(configuration: Configuration): Locale {
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            configuration.locales.get(0)
+        } else {
+            configuration.locale
         }
     }
 }

@@ -87,8 +87,8 @@ class HomeFragment : FurnitureBaseFragment() {
 
     private fun initToolbar() {
         furnitureBaseActivity.run {
-            setToolbarTitleData(ToolbarTitleData(title = "Make Home"))
-            setToolbarSubTitleData(ToolbarSubTitleData(subTitle = "BEAUTIFUL"))
+            setToolbarTitleData(ToolbarTitleData(title = requireContext().getString(R.string.home_toolbar_title)))
+            setToolbarSubTitleData(ToolbarSubTitleData(subTitle = requireContext().getString(R.string.home_toolbar_subtitle)))
             setToolbarLeftIconData(
                 ToolbarLeftIconData(
                     visibility = View.GONE,

@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_sans"
         android:textColor="@color/icon_gray"
-        android:text="Popular"
+        android:text="@string/popular"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/category_bg"

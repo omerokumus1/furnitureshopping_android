@@ -50,7 +50,7 @@ class BookmarksFragment : FurnitureBaseFragment() {
     private fun initToolbar() {
         furnitureBaseActivity.run {
             setToolbarTitleData(ToolbarTitleData(visibility = View.GONE))
-            setToolbarSubTitleData(ToolbarSubTitleData("Favorites"))
+            setToolbarSubTitleData(ToolbarSubTitleData(requireContext().getString(R.string.favorites)))
             setToolbarLeftIconData(
                 ToolbarLeftIconData(
                     visibility = View.GONE,

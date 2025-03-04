@@ -5,13 +5,13 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/bg_bottom_nav_home_icon_selector"
-        android:title="Home" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/bookmarksFragment"
         android:enabled="true"
         android:icon="@drawable/bg_bottom_nav_bookmarks_icon_selector"
-        android:title="Bookmarks" />
+        android:title="@string/bookmarks" />
 
     <!--    <item-->
     <!--        android:id="@+id/notifications"-->
@@ -23,7 +23,7 @@
         android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/bg_bottom_nav_profile_icon_selector"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 
 </menu>
