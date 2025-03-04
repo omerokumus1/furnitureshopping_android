@@ -1,10 +1,8 @@
 <resources>
-    <string name="app_name">Furniture Shopping</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="app_name" translatable="false">Furniture Shopping</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="signup">SIGN UP</string>
     <string name="signin">SIGN IN</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="already_have_account">Already have account?</string>
     <string name="log_in">Log in</string>
     <string name="confirm_password">Confirm Password</string>
@@ -12,4 +10,25 @@
     <string name="email">Email</string>
     <string name="name">Name</string>
     <string name="welcome">WELCOME</string>
+    <string name="home_toolbar_title">Make Home</string>
+    <string name="home_toolbar_subtitle">BEAUTIFUL</string>
+    <string name="boarding_first_text">MAKE YOUR</string>
+    <string name="boarding_second_text">HOME BEAUTIFUL</string>
+    <string name="boarding_third_text">The best simple place where you discover most wonderful furnitures and make your home beautiful</string>
+    <string name="get_started">Get Started</string>
+    <string name="home">Home</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="profile">Profile</string>
+    <string name="popular">Popular</string>
+    <string name="favorites">Favorites</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="hello">Hello!</string>
+    <string name="welcome_back">WELCOME BACK</string>
+    <string name="product_image">Product image</string>
+    <string name="shopping_bag_button">Shopping bag button</string>
+    <string name="left_icon">Left icon</string>
+    <string name="right_icon">Right icon</string>
+    <string name="dollar_sign">$</string>
+    <string name="price_format">$%1s</string>
+    <string name="log_out">Log out</string>
 </resources>

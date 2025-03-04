@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Furniture Shopping</string>
+    <string name="forgot_password">Parolanızı mı unuttunuz?</string>
+    <string name="signup">ÜYE OL</string>
+    <string name="signin">Oturum aç</string>
+    <string name="already_have_account">Zaten hesabınız var mı?</string>
+    <string name="log_in">Giriş yap</string>
+    <string name="confirm_password">Şifreyi onayla</string>
+    <string name="password">Şifre</string>
+    <string name="email">E-posta</string>
+    <string name="name">İsim</string>
+    <string name="welcome">HOŞ GELDİNİZ</string>
+    <string name="home_toolbar_title">Evini</string>
+    <string name="home_toolbar_subtitle">Güzelleştir</string>
+    <string name="boarding_first_text">EVİNİZİ</string>
+    <string name="boarding_second_text">GÜZELLEŞTİRİN</string>
+    <string name="boarding_third_text">En harika mobilyaları keşfettiğiniz ve evinizi güzelleştirdiğiniz en iyi yer</string>
+    <string name="get_started">Başla</string>
+    <string name="home">Ev</string>
+    <string name="bookmarks">Yer imleri</string>
+    <string name="profile">Profil</string>
+    <string name="popular">Popüler</string>
+    <string name="favorites">Favoriler</string>
+    <string name="send_reset_link">Sıfırlama bağlantısını gönder</string>
+    <string name="hello">Merhaba!</string>
+    <string name="welcome_back">TEKRAR HOŞGELDİNİZ</string>
+    <string name="product_image">Ürün resmi</string>
+    <string name="shopping_bag_button">Alışveriş Çantası Düğmesi</string>
+    <string name="left_icon">Sol simge</string>
+    <string name="right_icon">Sağ simge</string>
+    <string name="dollar_sign">$</string>
+    <string name="price_format">%1s₺</string>
+    <string name="log_out">Çıkış yap</string>
+</resources>
