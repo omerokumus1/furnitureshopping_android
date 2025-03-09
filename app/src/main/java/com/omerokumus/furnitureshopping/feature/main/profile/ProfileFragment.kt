@@ -12,6 +12,7 @@ import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.databinding.FragmentProfileBinding
 import com.omerokumus.furnitureshopping.feature.auth.AuthActivity
+import com.omerokumus.furnitureshopping.feature.settings.SettingsActivity
 
 class ProfileFragment : FurnitureBaseFragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -26,6 +27,23 @@ class ProfileFragment : FurnitureBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
+        val optionRowList = listOf(
+            ProfileOptionRow(
+                getString(R.string.settings),
+                getString(R.string.settings_card_subtitle)
+            )
+        )
+        val optionRowAdapter = ProfileOptionRowAdapter(optionRowList) { optionRow ->
+            when (optionRow.title) {
+                getString(R.string.settings) -> {
+                    Intent(
+                        requireContext(),
+                        SettingsActivity::class.java
+                    ).also { startActivity(it) }
+                }
+            }
+        }
+        binding.optionsRecyclerView.adapter = optionRowAdapter
     }
 
     private fun initToolbar() {

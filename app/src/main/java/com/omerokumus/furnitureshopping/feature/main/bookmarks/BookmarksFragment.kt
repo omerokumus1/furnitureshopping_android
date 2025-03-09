@@ -11,7 +11,7 @@ import com.omerokumus.furnitureshopping.base.data.ToolbarLeftIconData
 import com.omerokumus.furnitureshopping.base.data.ToolbarRightIconData
 import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
-import com.omerokumus.furnitureshopping.base.recyclerview.BottomMarginItemDecoration
+import com.omerokumus.furnitureshopping.base.recyclerview.MarginItemDecoration
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.FragmentBookmarksBinding
 import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetailActivity
@@ -40,8 +40,8 @@ class BookmarksFragment : FurnitureBaseFragment() {
                     ::onRemoveBookmarkItem
                 ).also { bookmarkAdapter = it }
             addItemDecoration(
-                BottomMarginItemDecoration(
-                    resources.getDimension(R.dimen.bookmarks_item_margin).toInt()
+                MarginItemDecoration(
+                    bottom = resources.getDimension(R.dimen.bookmarks_item_margin).toInt()
                 )
             )
         }

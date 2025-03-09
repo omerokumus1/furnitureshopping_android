@@ -32,4 +32,8 @@
     <string name="dollar_sign">$</string>
     <string name="price_format">%1s₺</string>
     <string name="log_out">Çıkış yap</string>
+    <string name="back_button">Geri tuşu</string>
+    <string name="settings">Ayarlar</string>
+    <string name="settings_card_subtitle">Bildirimler, Şifre, SSS, İletişim</string>
+    <string name="language">Dil</string>
 </resources>
