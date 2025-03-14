@@ -16,15 +16,20 @@
             android:name=".feature.productdetail.ProductDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.main.MainActivity"
+            android:name=".feature.auth.AuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.boarding.BoardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity
+            android:name=".feature.main.MainActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.furnitureshopping"
+    namespace = "com.omerokumus.furnitureshopping"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.furnitureshopping"
+        applicationId = "com.omerokumus.furnitureshopping"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -62,7 +62,4 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-    // DataBinding
-    kapt(libs.androidx.databinding.compiler)
 }

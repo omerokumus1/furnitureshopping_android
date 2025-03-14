@@ -1,33 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/actionBarSize">
-    
-<TextView
-        android:id="@+id/title"
+    android:minHeight="?attr/actionBarSize"
+    android:paddingHorizontal="20dp">
+
+    <ImageView
+        android:id="@+id/left_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/gelasio"
-        android:text="Make home"
-        android:textColor="@color/text_secondary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="Left icon"
+        android:src="@drawable/ic_search"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/subtitle"
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/gelasio_semibold"
-        android:text="BEAUTIFUL"
-        android:textColor="@color/primary"
-        android:textSize="18sp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gelasio"
+            android:textColor="@color/text_secondary"
+            android:textSize="18sp"
+            tools:text="Make home" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gelasio_semibold"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            tools:text="BEAUTIFUL" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageView
+        android:id="@+id/right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Right icon"
+        android:src="@drawable/ic_cart"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
