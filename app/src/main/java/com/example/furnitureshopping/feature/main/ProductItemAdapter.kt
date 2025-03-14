@@ -28,6 +28,7 @@ class ProductItemAdapter(
             productName.text = item.name
             productPrice.text = "$${item.price}"
             productImg.setImageResource(item.imageResource)
+            root.setOnClickListener { onClick(item) }
         }
     }
 

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/gelasio</item>
         <item>@font/gelasio_bold</item>
         <item>@font/gelasio_semibold</item>
+        <item>@font/merriweather</item>
+        <item>@font/nunito_sans</item>
+        <item>@font/nunito_sans_light</item>
         <item>@font/nunito_sans_semibold</item>
     </array>
 </resources>

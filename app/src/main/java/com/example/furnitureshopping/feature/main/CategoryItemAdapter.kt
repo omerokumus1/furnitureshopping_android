@@ -30,12 +30,12 @@ class CategoryItemAdapter(
 
     private fun CategoryItemBinding.handleClickState(item: CategoryItem) {
         if (item.isClicked) {
-            categoryBg.setImageResource(R.drawable.category_item_bg_pressed)
+            categoryIcon.setImageResource(item.categoryIconSelected)
             categoryName.setTextColor(root.context.getColor(R.color.black))
             categoryName.typeface =
                 ResourcesCompat.getFont(root.context, R.font.nunito_sans_semibold)
         } else {
-            categoryBg.setImageResource(R.drawable.rounded_bg)
+            categoryIcon.setImageResource(item.categoryIcon)
             categoryName.setTextColor(root.context.getColor(R.color.icon_gray))
             categoryName.typeface =
                 ResourcesCompat.getFont(root.context, R.font.nunito_sans)

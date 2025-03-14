@@ -7,5 +7,4 @@ data class ProductItem(
     val name: String,
     val price: Double,
     @DrawableRes val imageResource: Int,
-    val onClick: () -> Unit = {}
 )
