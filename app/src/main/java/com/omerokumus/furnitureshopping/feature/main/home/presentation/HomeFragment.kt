@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main.home
+package com.omerokumus.furnitureshopping.feature.main.home.presentation
 
 import android.content.Intent
 import android.os.Bundle

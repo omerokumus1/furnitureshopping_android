@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main.home
+package com.omerokumus.furnitureshopping.feature.main.home.presentation.model
 
 import androidx.annotation.DrawableRes
 

@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main.home
+package com.omerokumus.furnitureshopping.feature.main.home.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.databinding.CategoryItemBinding
+import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.CategoryItem
 
 class CategoryItemAdapter(
     var values: List<CategoryItem>,
