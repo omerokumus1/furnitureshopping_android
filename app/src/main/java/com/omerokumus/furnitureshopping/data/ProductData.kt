@@ -1,7 +1,6 @@
 package com.omerokumus.furnitureshopping.data
 
 import com.omerokumus.furnitureshopping.R
-import com.omerokumus.furnitureshopping.feature.main.home.ProductItem
 import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetail
 
 object ProductData {
@@ -33,32 +32,6 @@ object ProductData {
             50.00,
             listOf(R.drawable.desk, R.drawable.desk, R.drawable.desk, R.drawable.desk),
             "Simple Desk is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. ",
-        )
-    )
-    val productItemData = listOf(
-        ProductItem(
-            1,
-            "Black Simple Lamp",
-            12.00,
-            R.drawable.lamp,
-        ),
-        ProductItem(
-            2,
-            "Minimal Stand",
-            25.00,
-            R.drawable.stand,
-        ),
-        ProductItem(
-            3,
-            "Coffee Chair",
-            20.00,
-            R.drawable.chair,
-        ),
-        ProductItem(
-            4,
-            "Simple Desk",
-            50.00,
-            R.drawable.desk,
         )
     )
 }
