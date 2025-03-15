@@ -2,15 +2,23 @@ package com.omerokumus.furnitureshopping.feature.main.home.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.databinding.ProductItemBinding
+import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.ProductItem
 import java.util.Locale
 
 class ProductItemAdapter(
-    private val values: List<ProductItem>,
+    private var values: List<ProductItem>,
     private val onClick: (ProductItem) -> Unit = {}
 ) : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
+
+    fun submitList(newList: List<ProductItem>) {
+        val diffResult = DiffUtil.calculateDiff(ProductItemDiffCallback(values, newList))
+        values = newList
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
