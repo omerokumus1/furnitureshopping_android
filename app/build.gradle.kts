@@ -60,6 +60,10 @@ dependencies {
     // Fragment
     implementation(libs.androidx.fragment.ktx)
 
+    // LiveData KTX
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -67,4 +71,15 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    // OkHttp, Retrofit, Gson
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    // Glide
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
 }
