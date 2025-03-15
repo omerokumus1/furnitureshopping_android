@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="@color/icon_gray" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_list"
@@ -13,6 +21,7 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/category_item" />
 
@@ -21,8 +30,16 @@
         android:id="@+id/product_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/product_item" />
+
+    <include
+        android:id="@+id/no_products_view"
+        layout="@layout/no_products_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

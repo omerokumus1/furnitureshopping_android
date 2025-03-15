@@ -14,7 +14,9 @@ import com.omerokumus.furnitureshopping.base.data.ToolbarRightIconData
 import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : FurnitureBaseActivity() {
     private lateinit var binding: ActivityMainBinding
 

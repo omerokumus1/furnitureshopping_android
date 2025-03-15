@@ -36,4 +36,10 @@
     <string name="settings">Ayarlar</string>
     <string name="settings_card_subtitle">Bildirimler, Şifre, SSS, İletişim</string>
     <string name="language">Dil</string>
+    <string name="no_products_available">Hiç ürün yok</string>
+    <string name="no_products_image_content_description">Ürün yok resmi</string>
+    <string name="network_error_title">Bağlantı Hatası</string>
+    <string name="products_network_error_message">Bağlantı hatası oluştur. Lütfen tekrar deneyin</string>
+    <string name="try_again">Tekrar dene</string>
+    <string name="ok">Tamam</string>
 </resources>

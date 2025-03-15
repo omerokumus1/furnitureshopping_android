@@ -35,4 +35,10 @@
     <string name="settings">Settings</string>
     <string name="settings_card_subtitle">Notification, Password, FAQ, Contact</string>
     <string name="language">Language</string>
+    <string name="no_products_available">No products available</string>
+    <string name="no_products_image_content_description">No products image</string>
+    <string name="network_error_title">Network Error</string>
+    <string name="products_network_error_message">A network error occurred. Please try again</string>
+    <string name="try_again">Try again</string>
+    <string name="ok">OK</string>
 </resources>

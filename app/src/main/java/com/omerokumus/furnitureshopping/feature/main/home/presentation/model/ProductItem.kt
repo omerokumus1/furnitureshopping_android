@@ -1,10 +1,23 @@
 package com.omerokumus.furnitureshopping.feature.main.home.presentation.model
 
-import androidx.annotation.DrawableRes
+import com.omerokumus.furnitureshopping.feature.main.home.data.model.ProductResponse
 
 data class ProductItem(
     val id: Int,
     val name: String,
     val price: Double,
-    @DrawableRes val imageResource: Int,
-)
+    val priceUnit: String,
+    val mainImage: String,
+) {
+    companion object {
+        fun from(productResponse: ProductResponse?) = productResponse?.let {
+            ProductItem(
+                id = it.id ?: 0,
+                name = it.name ?: "",
+                price = it.price ?: 0.0,
+                priceUnit = it.priceUnit ?: "",
+                mainImage = it.mainImage ?: ""
+            )
+        }
+    }
+}

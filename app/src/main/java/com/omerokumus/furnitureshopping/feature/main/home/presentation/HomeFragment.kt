@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.viewModels
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.base.FurnitureBaseFragment
 import com.omerokumus.furnitureshopping.base.data.ToolbarLeftIconData
 import com.omerokumus.furnitureshopping.base.data.ToolbarRightIconData
 import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
-import com.omerokumus.furnitureshopping.data.ProductData
 import com.omerokumus.furnitureshopping.databinding.FragmentHomeBinding
+import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.CategoryItem
 import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : FurnitureBaseFragment() {
     private var categories = listOf(
         CategoryItem(
@@ -57,6 +61,7 @@ class HomeFragment : FurnitureBaseFragment() {
     )
 
     private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryItemAdapter
     private lateinit var productAdapter: ProductItemAdapter
 
@@ -70,18 +75,100 @@ class HomeFragment : FurnitureBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
-        categoryAdapter = getCategoryItemAdapter()
+        setCategoryAdapter()
+        setProductAdapter()
+        setRecyclerViewAdapters()
+        observeViewModel()
+        viewModel.fetchProducts()
+    }
 
-        productAdapter = ProductItemAdapter(ProductData.productItemData) { productItem ->
+    private fun setRecyclerViewAdapters() {
+        binding.run {
+            categoryList.adapter = categoryAdapter
+            productGrid.adapter = productAdapter
+        }
+    }
+
+    private fun observeViewModel() {
+        with(viewModel) {
+            networkState.observe(viewLifecycleOwner) {
+                when (it) {
+                    HomeFragmentViewModel.NetworkState.LOADING -> handleLoadingState()
+                    HomeFragmentViewModel.NetworkState.ERROR -> handleErrorState()
+                    HomeFragmentViewModel.NetworkState.SUCCESS -> handleSuccessState()
+                }
+            }
+            productsLiveData.observe(viewLifecycleOwner) { products ->
+                if (products.isEmpty()) {
+                    binding.run {
+                        categoryList.visibility = View.GONE
+                        productGrid.visibility = View.GONE
+                        noProductsView.root.visibility = View.VISIBLE
+                    }
+                } else {
+                    productAdapter.submitList(products)
+                }
+            }
+        }
+    }
+
+    private fun handleSuccessState() {
+        binding.run {
+            progressIndicator.visibility = View.GONE
+            categoryList.visibility = View.VISIBLE
+            productGrid.visibility = View.VISIBLE
+        }
+    }
+
+    private fun handleErrorState() {
+        binding.run {
+            progressIndicator.visibility = View.GONE
+            categoryList.visibility = View.GONE
+            productGrid.visibility = View.GONE
+            AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+                .setTitle(R.string.network_error_title)
+                .setMessage(R.string.products_network_error_message)
+                .setPositiveButton(R.string.try_again) { dialog, _ ->
+                    viewModel.fetchProducts()
+                    dialog.dismiss()
+                }.setNeutralButton(R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+
+    private fun handleLoadingState() {
+        binding.run {
+            progressIndicator.visibility = View.VISIBLE
+            categoryList.visibility = View.GONE
+            productGrid.visibility = View.GONE
+        }
+    }
+
+    private fun setCategoryAdapter() {
+        categoryAdapter = CategoryItemAdapter(categories) { categoryItem ->
+            val previousClicked = categories.find { it.isClicked }
+            var prevIndex = 0
+            var clickedIndex = 0
+            categories = categories.mapIndexed { index, it ->
+                if (it.id == previousClicked?.id) {
+                    it.copy(isClicked = false).also { prevIndex = index }
+                } else it.copy(isClicked = it.id == categoryItem.id)
+                    .also { if (it.id == categoryItem.id) clickedIndex = index }
+            }
+            categoryAdapter.values = categories
+            categoryAdapter.notifyItemChanged(prevIndex)
+            categoryAdapter.notifyItemChanged(clickedIndex)
+        }
+    }
+
+    private fun setProductAdapter() {
+        productAdapter = ProductItemAdapter(emptyList()) { productItem ->
             Intent(requireContext(), ProductDetailActivity::class.java).apply {
                 putExtra("id", productItem.id)
                 startActivity(this)
             }
-        }
-
-        binding.run {
-            categoryList.adapter = categoryAdapter
-            productGrid.adapter = productAdapter
         }
     }
 
@@ -105,18 +192,4 @@ class HomeFragment : FurnitureBaseFragment() {
 
     }
 
-    private fun getCategoryItemAdapter() = CategoryItemAdapter(categories) { categoryItem ->
-        val previousClicked = categories.find { it.isClicked }
-        var prevIndex = 0
-        var clickedIndex = 0
-        categories = categories.mapIndexed { index, it ->
-            if (it.id == previousClicked?.id) {
-                it.copy(isClicked = false).also { prevIndex = index }
-            } else it.copy(isClicked = it.id == categoryItem.id)
-                .also { if (it.id == categoryItem.id) clickedIndex = index }
-        }
-        categoryAdapter.values = categories
-        categoryAdapter.notifyItemChanged(prevIndex)
-        categoryAdapter.notifyItemChanged(clickedIndex)
-    }
 }
