@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.View
 import androidx.navigation.findNavController
 import com.omerokumus.furnitureshopping.feature.auth.AuthActivity
-import com.omerokumus.furnitureshopping.feature.auth.LoginFragmentDirections
+import com.omerokumus.furnitureshopping.feature.auth.login.presentation.LoginFragmentDirections
 import com.omerokumus.furnitureshopping.feature.main.MainActivity
 
 /**
@@ -32,12 +32,13 @@ fun View?.asForgotPasswordButton() {
 /**
  * Navigate from Login to MainActivity
  */
-fun View?.asLoginButton() {
+fun View?.asLoginButton(isLoginSuccessful: () -> Boolean) {
     this?.setOnClickListener {
-        Intent(context, MainActivity::class.java).also {
-            context.startActivity(it)
-            findActivity()?.finish()
-        }
+        if (isLoginSuccessful())
+            Intent(context, MainActivity::class.java).also {
+                context.startActivity(it)
+                findActivity()?.finish()
+            }
     }
 }
 
