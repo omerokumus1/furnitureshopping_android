@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omerokumus.furnitureshopping.feature.productdetail.presentation.model.ProductDetail
 import com.omerokumus.furnitureshopping.feature.productdetail.data.ProductDetailRepository
+import com.omerokumus.furnitureshopping.feature.usermanager.UserManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductDetailViewModel @Inject constructor(val repository: ProductDetailRepository) :
+class ProductDetailViewModel @Inject constructor(
+    private val repository: ProductDetailRepository,
+    private val userManager: UserManager
+) :
     ViewModel() {
 
     private val productDetailMutableLiveData = MutableLiveData<ProductDetail>()
@@ -34,31 +38,19 @@ class ProductDetailViewModel @Inject constructor(val repository: ProductDetailRe
         viewModelScope.launch {
             repository.addFavoriteProduct(userId, productId)
         }
-
+        productDetailMutableLiveData.value?.let { userManager.addFavoriteProduct(it) }
     }
 
     fun removeFavoriteProduct(userId: Int, productId: Int) {
         viewModelScope.launch {
             repository.removeFavoriteProduct(userId, productId)
         }
-
+        productDetailMutableLiveData.value?.let { userManager.removeFavoriteProduct(it) }
     }
 
-    fun isProductBookmarked(userId: Int, productId: Int) {
-        viewModelScope.launch {
-            val response = repository.getFavoriteProducts(userId)
-            if (response.isSuccessful && response.body() != null) {
-                val favoriteProducts = response.body()
-                for (product in favoriteProducts!!) {
-                    if (product.id == productId) {
-                        setIsProductBookmarked(true)
-                        break
-                    }
-                }
-            } else {
-                setIsProductBookmarked(false)
-            }
-        }
+    fun isProductBookmarked(productId: Int) {
+        val isBookmarked = userManager.getUserFavoriteProducts().find { it.id == productId }
+        isProductBookmarkedMutableLiveData.postValue(isBookmarked != null)
     }
 
     fun setIsProductBookmarked(isBookmarked: Boolean) {

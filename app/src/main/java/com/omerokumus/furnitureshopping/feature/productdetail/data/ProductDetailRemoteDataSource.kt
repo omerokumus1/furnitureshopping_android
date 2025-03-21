@@ -16,11 +16,4 @@ class ProductDetailRemoteDataSource@Inject constructor(private val retrofit: Ret
 
     suspend fun getProductById(productId: Int) = api.getProductById(productId)
 
-//    val lampDetail = ProductData.productDetailData.find { it.id == 1 }
-//
-//    val drawerDetail = ProductData.productDetailData.find { it.id == 2 }
-//
-//    val chairDetail = ProductData.productDetailData.find { it.id == 3 }
-//
-//    val drawer2Detail = ProductData.productDetailData.find { it.id == 4 }
 }

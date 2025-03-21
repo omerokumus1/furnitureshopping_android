@@ -85,7 +85,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 )
                 productDescription.text = it.description
             }
-            viewModel.isProductBookmarked(1, viewModel.productDetailLiveData.value?.id ?: -1)
+            viewModel.isProductBookmarked(viewModel.productDetailLiveData.value?.id ?: -1)
         }
 
         viewModel.isProductBookmarkedLiveData.observe(this){
