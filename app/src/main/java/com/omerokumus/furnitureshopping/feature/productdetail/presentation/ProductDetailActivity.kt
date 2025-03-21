@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.productdetail
+package com.omerokumus.furnitureshopping.feature.productdetail.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -12,7 +12,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
-import com.omerokumus.furnitureshopping.feature.main.bookmarks.BookmarkItem
 import java.util.Locale
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -34,6 +33,7 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         observeViewModel()
         viewModel.getProductDetail(intent.getIntExtra("id", 1))
+        viewModel.isProductBookmarked(1, viewModel.productDetailLiveData.value?.id ?: -1)
         setBackButton()
         initProductImgPager()
         setBookmarkClickListener()
@@ -41,22 +41,25 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun setBookmarkClickListener() {
         binding.bookmarkBtn.setOnClickListener {
-            if (isAlreadyBookmarked()) {
-                BookmarkData.bookmarkData.removeIf { bookmarkItem -> bookmarkItem.productId == viewModel.productDetailLiveData.value?.id }
-                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
+            if (viewModel.isProductBookmarkedLiveData.value == true) {
+//                BookmarkData.bookmarkData.removeIf { bookmarkItem -> bookmarkItem.productId == viewModel.productDetailLiveData.value?.id }
+                viewModel.setIsProductBookmarked(false)
+                viewModel.removeFavoriteProduct(1, viewModel.productDetailLiveData.value?.id ?: -1)
             } else {
                 viewModel.productDetailLiveData.value?.let {
-                    BookmarkData.bookmarkData.add(
-                        BookmarkItem(
-                            BookmarkData.bookmarkData.size,
-                            it.id,
-                            it.name,
-                            it.images.first(),
-                            it.price
-                        )
-                    )
-                    binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+//                    BookmarkData.bookmarkData.add(
+//                        BookmarkItem(
+//                            BookmarkData.bookmarkData.size,
+//                            it.id,
+//                            it.name,
+//                            it.images.first(),
+//                            it.price
+//                        )
+//                    )
+                    viewModel.setIsProductBookmarked(true)
+                    viewModel.addFavoriteProduct(1, it.id)
                 }
+
             }
         }
     }
@@ -85,7 +88,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.productDetailLiveData.observe(this) {
-            productImgPagerAdapter.productImgList = it.images
+//            productImgPagerAdapter.productImgList = it.images
             productImgPagerAdapter.notifyDataSetChanged()
             binding.apply {
                 productName.text = it.name
@@ -98,6 +101,14 @@ class ProductDetailActivity : AppCompatActivity() {
                     ?.let {
                         binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
                     }
+            }
+        }
+
+        viewModel.isProductBookmarkedLiveData.observe(this){
+            if (it){
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+            }else{
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
             }
         }
     }
