@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.productdetail
+package com.omerokumus.furnitureshopping.feature.productdetail.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

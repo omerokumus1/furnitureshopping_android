@@ -15,7 +15,7 @@ import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.databinding.FragmentHomeBinding
 import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.CategoryItem
-import com.omerokumus.furnitureshopping.feature.productdetail.ProductDetailActivity
+import com.omerokumus.furnitureshopping.feature.productdetail.presentation.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
