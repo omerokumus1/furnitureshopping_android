@@ -12,8 +12,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
@@ -33,7 +35,6 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         observeViewModel()
         viewModel.getProductDetail(intent.getIntExtra("id", 1))
-        viewModel.isProductBookmarked(1, viewModel.productDetailLiveData.value?.id ?: -1)
         setBackButton()
         initProductImgPager()
         setBookmarkClickListener()
@@ -42,20 +43,10 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun setBookmarkClickListener() {
         binding.bookmarkBtn.setOnClickListener {
             if (viewModel.isProductBookmarkedLiveData.value == true) {
-//                BookmarkData.bookmarkData.removeIf { bookmarkItem -> bookmarkItem.productId == viewModel.productDetailLiveData.value?.id }
                 viewModel.setIsProductBookmarked(false)
                 viewModel.removeFavoriteProduct(1, viewModel.productDetailLiveData.value?.id ?: -1)
             } else {
                 viewModel.productDetailLiveData.value?.let {
-//                    BookmarkData.bookmarkData.add(
-//                        BookmarkItem(
-//                            BookmarkData.bookmarkData.size,
-//                            it.id,
-//                            it.name,
-//                            it.images.first(),
-//                            it.price
-//                        )
-//                    )
                     viewModel.setIsProductBookmarked(true)
                     viewModel.addFavoriteProduct(1, it.id)
                 }
@@ -63,10 +54,6 @@ class ProductDetailActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun isAlreadyBookmarked() = BookmarkData.bookmarkData.find { bookmarkItem ->
-        bookmarkItem.productId == viewModel.productDetailLiveData.value?.id
-    } != null
 
     private fun setBackButton() {
         binding.backBtnContainer.setOnClickListener {
@@ -88,7 +75,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.productDetailLiveData.observe(this) {
-//            productImgPagerAdapter.productImgList = it.images
+            productImgPagerAdapter.productImgList = it.imageNames
             productImgPagerAdapter.notifyDataSetChanged()
             binding.apply {
                 productName.text = it.name
@@ -97,11 +84,8 @@ class ProductDetailActivity : AppCompatActivity() {
                     String.format(getCurrentLocale(root.resources.configuration), "%.2f", it.price)
                 )
                 productDescription.text = it.description
-                BookmarkData.bookmarkData.find { bookmarkItem -> bookmarkItem.productId == it.id }
-                    ?.let {
-                        binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
-                    }
             }
+            viewModel.isProductBookmarked(1, viewModel.productDetailLiveData.value?.id ?: -1)
         }
 
         viewModel.isProductBookmarkedLiveData.observe(this){

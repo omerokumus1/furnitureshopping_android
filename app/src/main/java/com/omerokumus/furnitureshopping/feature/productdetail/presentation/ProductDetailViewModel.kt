@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omerokumus.furnitureshopping.feature.productdetail.presentation.model.ProductDetail
 import com.omerokumus.furnitureshopping.feature.productdetail.data.ProductDetailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProductDetailViewModel @Inject constructor(private val repository: ProductDetailRepository) :
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor(val repository: ProductDetailRepository) :
     ViewModel() {
 
     private val productDetailMutableLiveData = MutableLiveData<ProductDetail>()
@@ -17,7 +19,6 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
 
     private val isProductBookmarkedMutableLiveData = MutableLiveData<Boolean>()
     val isProductBookmarkedLiveData: LiveData<Boolean> = isProductBookmarkedMutableLiveData
-
 
 
     fun getProductDetail(id: Int) {
@@ -46,15 +47,15 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
     fun isProductBookmarked(userId: Int, productId: Int) {
         viewModelScope.launch {
             val response = repository.getFavoriteProducts(userId)
-            if (response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
                 val favoriteProducts = response.body()
-                for (product in favoriteProducts!!){
-                    if (product.id == productId){
+                for (product in favoriteProducts!!) {
+                    if (product.id == productId) {
                         setIsProductBookmarked(true)
                         break
                     }
                 }
-            }else{
+            } else {
                 setIsProductBookmarked(false)
             }
         }
