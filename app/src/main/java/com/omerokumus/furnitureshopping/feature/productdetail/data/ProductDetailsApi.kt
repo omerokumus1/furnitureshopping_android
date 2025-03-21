@@ -1,15 +1,15 @@
 package com.omerokumus.furnitureshopping.feature.productdetail.data
 
 import com.omerokumus.furnitureshopping.feature.productdetail.data.model.ProductDetailResponse
-import com.omerokumus.furnitureshopping.feature.productdetail.presentation.model.ProductDetail
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ProductDetailsApi {
 
-    @GET("/api/users/{userId}/add-favorite-product/{productId}")
+    @POST("/api/users/{userId}/add-favorite-product/{productId}")
     suspend fun addFavoriteProduct(@Path("userId") userId: Int, @Path("productId") productId: Int)
 
     @DELETE("/api/users/{userId}/remove-favorite-product/{productId}")
