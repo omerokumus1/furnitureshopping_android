@@ -18,7 +18,7 @@ class ProductImgPagerAdapter(var productImgList: List<String>) :
 
     override fun onBindViewHolder(holder: ProductImgViewHolder, position: Int) {
         Glide.with(holder.itemView.context)
-            .load(Constants.BASE_URL + "products/images/" + productImgList[position])
+            .load(Constants.IMAGE_RESOURCES_BASE_URL + productImgList[position])
             .placeholder(R.drawable.image_loading)
             .error(R.drawable.image_not_available)
             .into(holder.binding.productImg)
