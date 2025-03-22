@@ -39,4 +39,8 @@ class UserManager @Inject constructor() {
     fun removeFavoriteProduct(product: ProductDetail) {
         userFavoriteProducts.remove(product)
     }
+
+    fun removeFavoriteProductById(productId: Int) {
+        userFavoriteProducts.removeIf { it.id == productId }
+    }
 }
