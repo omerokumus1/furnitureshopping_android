@@ -67,3 +67,12 @@ fun View.findActivity(): Activity? {
     }
     return null
 }
+
+fun View.setBlockingClickListener(onClick: () -> Unit) {
+    this.setOnClickListener {
+        this.isClickable = false
+        onClick()
+        this.postDelayed({ this.isClickable = true }, 1000)
+
+    }
+}

@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
+import com.omerokumus.furnitureshopping.extensions.setBlockingClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -41,7 +42,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setBookmarkClickListener() {
-        binding.bookmarkBtn.setOnClickListener {
+        binding.bookmarkBtn.setBlockingClickListener {
             if (viewModel.isProductBookmarkedLiveData.value == true) {
                 viewModel.setIsProductBookmarked(false)
                 viewModel.removeFavoriteProduct(1, viewModel.productDetailLiveData.value?.id ?: -1)
