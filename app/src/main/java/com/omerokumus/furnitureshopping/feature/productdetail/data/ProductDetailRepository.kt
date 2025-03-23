@@ -8,14 +8,6 @@ class ProductDetailRepository @Inject constructor(
     private val remoteDataSource: ProductDetailRemoteDataSource
 ) {
 
-//    fun getDrawerDetail() = remoteDataSource.drawerDetail
-//
-//    fun getDrawer2Detail() = remoteDataSource.drawer2Detail
-//
-//    fun getChairDetail() = remoteDataSource.chairDetail
-//
-//    fun getLampDetail() = remoteDataSource.lampDetail
-
     suspend fun addFavoriteProduct(userId: Int, productId: Int) = withContext(Dispatchers.IO) {
         remoteDataSource.addFavoriteProduct(userId, productId)
     }
