@@ -1,8 +1,7 @@
 package com.omerokumus.furnitureshopping.feature.usermanager
 
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation.model.BookmarkItem
 import com.omerokumus.furnitureshopping.feature.usermanager.model.User
-import com.omerokumus.furnitureshopping.feature.productdetail.data.model.ProductDetailResponse
-import com.omerokumus.furnitureshopping.feature.productdetail.presentation.model.ProductDetail
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,7 +9,7 @@ import javax.inject.Singleton
 class UserManager @Inject constructor() {
 
     private var user: User? = null
-    private var userFavoriteProducts: MutableList<ProductDetail> = mutableListOf()
+    private var userFavoriteProducts: MutableList<BookmarkItem> = mutableListOf()
 
     fun setUser(user: User) {
         this.user = user
@@ -24,19 +23,21 @@ class UserManager @Inject constructor() {
         user = null
     }
 
-    fun setUserFavoriteProducts(products: List<ProductDetail>) {
+    fun setUserFavoriteProducts(products: List<BookmarkItem>) {
         userFavoriteProducts = products.toMutableList()
     }
 
-    fun getUserFavoriteProducts(): List<ProductDetail> {
+    fun getUserFavoriteProducts(): List<BookmarkItem> {
         return userFavoriteProducts
     }
 
-    fun addFavoriteProduct(product: ProductDetail) {
-        userFavoriteProducts.add(product)
+    fun addFavoriteProduct(product: BookmarkItem?) {
+        if (product != null) {
+            userFavoriteProducts.add(product)
+        }
     }
 
-    fun removeFavoriteProduct(product: ProductDetail) {
+    fun removeFavoriteProduct(product: BookmarkItem?) {
         userFavoriteProducts.remove(product)
     }
 

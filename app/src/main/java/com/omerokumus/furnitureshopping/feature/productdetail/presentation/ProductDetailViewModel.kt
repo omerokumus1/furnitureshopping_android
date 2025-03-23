@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation.model.BookmarkItem
 import com.omerokumus.furnitureshopping.feature.productdetail.presentation.model.ProductDetail
 import com.omerokumus.furnitureshopping.feature.productdetail.data.ProductDetailRepository
 import com.omerokumus.furnitureshopping.feature.usermanager.UserManager
@@ -25,7 +26,7 @@ class ProductDetailViewModel @Inject constructor(
     val isProductBookmarkedLiveData: LiveData<Boolean> = isProductBookmarkedMutableLiveData
 
 
-    fun getProductDetail(id: Int) {
+    fun getProductById(id: Int) {
         viewModelScope.launch {
             val response = repository.getProductById(id)
             if (response.isSuccessful && response.body() != null) {
@@ -38,14 +39,18 @@ class ProductDetailViewModel @Inject constructor(
         viewModelScope.launch {
             repository.addFavoriteProduct(userId, productId)
         }
-        productDetailMutableLiveData.value?.let { userManager.addFavoriteProduct(it) }
+        productDetailMutableLiveData.value?.let {
+            userManager.addFavoriteProduct(BookmarkItem.from(it))
+        }
     }
 
     fun removeFavoriteProduct(userId: Int, productId: Int) {
         viewModelScope.launch {
             repository.removeFavoriteProduct(userId, productId)
         }
-        productDetailMutableLiveData.value?.let { userManager.removeFavoriteProduct(it) }
+        productDetailMutableLiveData.value?.let {
+            userManager.removeFavoriteProduct(BookmarkItem.from(it))
+        }
     }
 
     fun isProductBookmarked(productId: Int) {
