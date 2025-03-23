@@ -16,10 +16,6 @@ class ProductDetailRepository @Inject constructor(
         remoteDataSource.removeFavoriteProduct(userId, productId)
     }
 
-    suspend fun getFavoriteProducts(userId: Int) = withContext(Dispatchers.IO) {
-        remoteDataSource.getFavoriteProducts(userId)
-    }
-
     suspend fun getProductById(productId: Int) = withContext(Dispatchers.IO) {
         remoteDataSource.getProductById(productId)
 

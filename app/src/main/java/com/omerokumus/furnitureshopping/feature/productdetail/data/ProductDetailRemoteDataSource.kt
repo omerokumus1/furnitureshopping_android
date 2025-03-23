@@ -12,8 +12,6 @@ class ProductDetailRemoteDataSource@Inject constructor(private val retrofit: Ret
 
     suspend fun removeFavoriteProduct(userId: Int, productId: Int) = api.removeFavoriteProduct(userId, productId)
 
-    suspend fun getFavoriteProducts(userId: Int) = api.getFavoriteProducts(userId)
-
     suspend fun getProductById(productId: Int) = api.getProductById(productId)
 
 }

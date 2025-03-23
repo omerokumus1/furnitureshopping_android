@@ -15,9 +15,6 @@ interface ProductDetailsApi {
     @DELETE("/api/users/{userId}/remove-favorite-product/{productId}")
     suspend fun removeFavoriteProduct(@Path("userId") userId: Int, @Path("productId") productId: Int)
 
-    @GET("/api/users/{userId}/favorite-products")
-    suspend fun getFavoriteProducts(@Path("userId") userId: Int): Response<List<ProductDetailResponse>>
-
     @GET("/api/products/{id}")
     suspend fun getProductById(@Path("id") productId: Int): Response<ProductDetailResponse>
 }
