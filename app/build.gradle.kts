@@ -5,6 +5,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -81,5 +82,9 @@ dependencies {
     // Glide
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation (libs.firebase.analytics.ktx)
 
 }
