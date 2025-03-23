@@ -1,6 +1,5 @@
 package com.omerokumus.furnitureshopping.feature.productdetail.data
 
-import com.omerokumus.furnitureshopping.data.ProductData
 import retrofit2.Retrofit
 import javax.inject.Inject
 

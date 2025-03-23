@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
-import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
 import com.omerokumus.furnitureshopping.extensions.setBlockingClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +34,7 @@ class ProductDetailActivity : AppCompatActivity() {
             insets
         }
         observeViewModel()
-        viewModel.getProductDetail(intent.getIntExtra("id", 1))
+        viewModel.getProductById(intent.getIntExtra("id", 1))
         setBackButton()
         initProductImgPager()
         setBookmarkClickListener()

@@ -6,7 +6,6 @@ data class ProductDetailResponse (
     val description: String? = null,
     val price: Double? = null,
     val priceUnit: String? = null,
-    val mainImage: String? = null,
     val imageNames: List<String>? = null,
     val colorCodes: List<String>? = null
 )

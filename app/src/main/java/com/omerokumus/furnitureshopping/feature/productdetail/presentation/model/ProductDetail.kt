@@ -8,7 +8,6 @@ data class ProductDetail(
     val description: String,
     val price: Double,
     val priceUnit: String,
-    val mainImage: String,
     val imageNames: List<String>,
     val colorCodes: List<String>
     ){
@@ -20,7 +19,6 @@ data class ProductDetail(
                 description = it.description ?: "",
                 price = it.price ?: 0.0,
                 priceUnit = it.priceUnit ?: "",
-                mainImage = it.mainImage ?: "",
                 imageNames = it.imageNames ?: emptyList(),
                 colorCodes = it.colorCodes ?: emptyList()
             )
