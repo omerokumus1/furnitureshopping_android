@@ -1,5 +1,6 @@
 package com.omerokumus.furnitureshopping.feature.auth.login.data
 
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.data.model.BookmarkItemResponse
 import com.omerokumus.furnitureshopping.feature.productdetail.data.model.ProductDetailResponse
 import com.omerokumus.furnitureshopping.feature.usermanager.model.User
 import retrofit2.Response
@@ -15,6 +16,4 @@ interface UserApi {
     @GET("/api/users/{userId}")
     suspend fun getUserById(@Path("userId") userId: Int): Response<User>
 
-    @GET("/api/users/{userId}/favorite-products")
-    suspend fun getFavoriteProducts(@Path("userId") userId: Int): Response<List<ProductDetailResponse>>
 }

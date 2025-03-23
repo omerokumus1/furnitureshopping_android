@@ -13,7 +13,6 @@ import com.omerokumus.furnitureshopping.extensions.asLoginButton
 import com.omerokumus.furnitureshopping.extensions.asPasswordInput
 import com.omerokumus.furnitureshopping.extensions.asSignUpButton
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.wait
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -32,7 +31,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserData(1) // Example User fetched. Authenticated User will be used after login controls added.
+        viewModel.getUserById(1) // Example User fetched. Authenticated User will be used after login controls added.
 
         observeViewModel()
         binding.run {
@@ -47,19 +46,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun observeViewModel(){
-        observeUser()
-        observeUserFavoriteProducts()
-    }
-
-    private fun observeUser() {
         viewModel.userLiveData.observe(viewLifecycleOwner) {
             viewModel.setUser(it)
-        }
-    }
-
-    private fun observeUserFavoriteProducts(){
-        viewModel.userFavoriteProductsLiveData.observe(viewLifecycleOwner){
-            viewModel.setUserFavoriteProducts(it)
         }
     }
 }

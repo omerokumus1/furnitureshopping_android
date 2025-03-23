@@ -8,5 +8,4 @@ class LoginRemoteDataSource@Inject constructor(private val retrofit: Retrofit) {
 
     suspend fun getUserById(userId: Int) = api.getUserById(userId)
 
-    suspend fun getFavoriteProducts(userId: Int) = api.getFavoriteProducts(userId)
 }

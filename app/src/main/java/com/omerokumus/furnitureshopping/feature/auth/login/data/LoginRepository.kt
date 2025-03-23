@@ -9,10 +9,4 @@ class LoginRepository @Inject constructor(private val remoteDataSource: LoginRem
     suspend fun getUserById(userId: Int) = withContext(Dispatchers.IO) {
         remoteDataSource.getUserById(userId)
     }
-
-
-    suspend fun getFavoriteProducts(userId: Int) = withContext(Dispatchers.IO) {
-        remoteDataSource.getFavoriteProducts(userId)
-    }
-
 }
