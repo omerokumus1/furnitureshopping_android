@@ -20,14 +20,5 @@ data class ProductItem(
                 mainImage = it.mainImage ?: ""
             )
         }
-        fun from(productDetailResponse: ProductDetailResponse?) = productDetailResponse?.let {
-            ProductItem(
-                id = it.id ?: 0,
-                name = it.name ?: "",
-                price = it.price ?: 0.0,
-                priceUnit = it.priceUnit ?: "",
-                mainImage = it.mainImage ?: ""
-            )
-        }
     }
 }
