@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main.bookmarks
+package com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.omerokumus.furnitureshopping.base.data.ToolbarSubTitleData
 import com.omerokumus.furnitureshopping.base.data.ToolbarTitleData
 import com.omerokumus.furnitureshopping.base.recyclerview.MarginItemDecoration
 import com.omerokumus.furnitureshopping.databinding.FragmentBookmarksBinding
-import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.ProductItem
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation.model.BookmarkItem
 import com.omerokumus.furnitureshopping.feature.productdetail.presentation.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +38,6 @@ class BookmarksFragment : FurnitureBaseFragment() {
 
         observeViewModel()
         initToolbar()
-        viewModel.getBookmarks(1)
         binding.bookmarksList.run {
             adapter =
                 BookmarkItemAdapter(
@@ -72,22 +71,27 @@ class BookmarksFragment : FurnitureBaseFragment() {
         }
     }
 
-    private fun onClickBookmarkItem(bookmarkItem: ProductItem) {
+    private fun onClickBookmarkItem(bookmarkItem: BookmarkItem) {
         Intent(requireContext(), ProductDetailActivity::class.java).also {
             it.putExtra("id", bookmarkItem.id)
             startActivity(it)
         }
     }
 
-    private fun onRemoveBookmarkItem(bookmarkItem: ProductItem) {
+    private fun onRemoveBookmarkItem(bookmarkItem: BookmarkItem) {
         viewModel.removeFromBookmarks(1, bookmarkItem.id)
         bookmarkAdapter.bookmarkList.remove(bookmarkItem)
         bookmarkAdapter.notifyDataSetChanged()
     }
 
-    private fun observeViewModel(){
-        viewModel.bookmarksLiveData.observe(this){
+    private fun observeViewModel() {
+        viewModel.bookmarksLiveData.observe(viewLifecycleOwner) {
             bookmarkAdapter.bookmarkList = it.toMutableList()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.setBookmarksFromUserManager()
     }
 }

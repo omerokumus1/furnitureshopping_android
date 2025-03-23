@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.main.bookmarks
+package com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,16 +7,17 @@ import com.bumptech.glide.Glide
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.base.constants.Constants
 import com.omerokumus.furnitureshopping.databinding.BookmarkItemBinding
-import com.omerokumus.furnitureshopping.feature.main.home.presentation.model.ProductItem
+import com.omerokumus.furnitureshopping.extensions.setBlockingClickListener
+import com.omerokumus.furnitureshopping.feature.main.bookmarks.presentation.model.BookmarkItem
 import java.util.Locale
 
 class BookmarkItemAdapter(
-    private val onClick: (ProductItem) -> Unit,
-    private val onRemove: (ProductItem) -> Unit
+    private val onClick: (BookmarkItem) -> Unit,
+    private val onRemove: (BookmarkItem) -> Unit
 ) :
     RecyclerView.Adapter<BookmarkItemAdapter.ViewHolder>() {
 
-    var bookmarkList = mutableListOf<ProductItem>()
+    var bookmarkList = mutableListOf<BookmarkItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -37,9 +38,9 @@ class BookmarkItemAdapter(
     inner class ViewHolder(private val binding: BookmarkItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            bookmarkItem: ProductItem,
-            onClick: (ProductItem) -> Unit,
-            onRemove: (ProductItem) -> Unit
+            bookmarkItem: BookmarkItem,
+            onClick: (BookmarkItem) -> Unit,
+            onRemove: (BookmarkItem) -> Unit
         ) {
             binding.apply {
                 bookmarkTitle.text = bookmarkItem.name
@@ -49,10 +50,15 @@ class BookmarkItemAdapter(
                     .placeholder(R.drawable.image_loading)
                     .error(R.drawable.image_not_available)
                     .into(binding.bookmarkImage)
-                //if (bookmarkItem.isInCart) bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag_filled)
-                //else bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag)
+
+                if (bookmarkItem.isInCart) {
+                    bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag_filled)
+                } else {
+                    bookmarkShoppingBag.setImageResource(R.drawable.ic_shopping_bag)
+                }
+
                 root.setOnClickListener { onClick(bookmarkItem) }
-                bookmarkRemoveBtn.setOnClickListener { onRemove(bookmarkItem) }
+                bookmarkRemoveBtn.setBlockingClickListener { onRemove(bookmarkItem) }
             }
         }
     }
