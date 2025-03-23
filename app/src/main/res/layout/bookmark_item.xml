@@ -9,7 +9,6 @@
         android:id="@+id/bookmark_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="20dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
