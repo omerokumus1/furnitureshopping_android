@@ -1,7 +1,5 @@
-package com.omerokumus.furnitureshopping.feature.auth.login.data
+package com.omerokumus.furnitureshopping.feature.auth
 
-import com.omerokumus.furnitureshopping.feature.main.bookmarks.data.model.BookmarkItemResponse
-import com.omerokumus.furnitureshopping.feature.productdetail.data.model.ProductDetailResponse
 import com.omerokumus.furnitureshopping.feature.usermanager.model.User
 import retrofit2.Response
 import retrofit2.http.GET
