@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.omerokumus.furnitureshopping.feature.auth.SignUpFragment"
+        android:name="com.omerokumus.furnitureshopping.feature.auth.signup.presentation.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/forgotPassword"
-        android:name="com.omerokumus.furnitureshopping.feature.auth.ForgotPasswordFragment"
+        android:name="com.omerokumus.furnitureshopping.feature.auth.forgetpassword.presentation.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" />
 </navigation>
