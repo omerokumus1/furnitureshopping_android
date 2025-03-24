@@ -24,14 +24,6 @@ class LoginViewModel @Inject constructor(
     private val _isThereLoggedInUser = MutableLiveData<Boolean>()
     val isThereLoggedInUser: LiveData<Boolean> = _isThereLoggedInUser
 
-    fun getUserById(userId: Int) {
-        viewModelScope.launch {
-            val response = repository.getUserById(userId)
-            if (response.isSuccessful && response.body() != null) {
-                setUser(response.body()!!)
-            }
-        }
-    }
 
     private fun getUserByEmail(email: String) {
         viewModelScope.launch {
@@ -58,11 +50,16 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun isLoginAllowed(emailError: String?, passwordError: String?): Boolean {
-        return emailError != null && passwordError != null
+    fun checkIfFieldEmpty(field: String?): Boolean {
+        return field.isNullOrEmpty()
     }
 
-    fun checkLoggedInUser(){
+    fun isLoginAllowed(emailError: String?, passwordError: String?): Boolean {
+        return emailError.isNullOrEmpty() && passwordError.isNullOrEmpty()
+    }
+
+    // Will be used for remember me feature
+    fun checkLoggedInUser() {
         viewModelScope.launch {
             _isLoginSuccessful.value = repository.checkLoggedInUser()
         }

@@ -3,6 +3,7 @@ package com.omerokumus.furnitureshopping.feature.auth.login.data
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.omerokumus.furnitureshopping.feature.auth.UserApi
 import retrofit2.Retrofit
 import javax.inject.Inject
 
