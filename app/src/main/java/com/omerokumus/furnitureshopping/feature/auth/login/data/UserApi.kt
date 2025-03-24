@@ -16,4 +16,7 @@ interface UserApi {
     @GET("/api/users/{userId}")
     suspend fun getUserById(@Path("userId") userId: Int): Response<User>
 
+    @GET("/api/users/user-by-email/{email}")
+    suspend fun getUserByEmail(@Path("email") email: String): Response<User>
+
 }
