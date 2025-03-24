@@ -8,7 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.databinding.ActivityAuthBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
 
