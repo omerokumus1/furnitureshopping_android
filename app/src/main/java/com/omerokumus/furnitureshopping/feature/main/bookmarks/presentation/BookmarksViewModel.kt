@@ -31,7 +31,6 @@ class BookmarksViewModel @Inject constructor(
                         ?.mapNotNull { BookmarkItem.from(it) }
                         ?.let {
                             _bookmarks.postValue(it)
-                            userManager.setUserFavoriteProducts(it)
                         }
                         ?: _bookmarks.postValue(emptyList())
 
@@ -50,12 +49,5 @@ class BookmarksViewModel @Inject constructor(
                 repository.removeFavoriteProduct(userId, productId)
             }
         }
-        userManager.removeFavoriteProductById(productId)
-
-    }
-
-    fun setBookmarksFromUserManager() {
-        _bookmarks.value = userManager.getUserFavoriteProducts()
-
     }
 }

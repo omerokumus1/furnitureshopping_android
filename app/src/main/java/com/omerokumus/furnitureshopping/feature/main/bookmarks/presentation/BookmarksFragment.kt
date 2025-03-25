@@ -91,8 +91,4 @@ class BookmarksFragment : FurnitureBaseFragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.setBookmarksFromUserManager()
-    }
 }
