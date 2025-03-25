@@ -82,6 +82,7 @@ class LoginFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.isLoginSuccessful.observe(viewLifecycleOwner) {
             if (it) {
+                viewModel.getUserByEmail(binding.emailTextFieldEditText.text.toString())
                 Intent(requireContext(), MainActivity::class.java).also { intent ->
                     requireContext().startActivity(intent)
                     requireActivity().finish()

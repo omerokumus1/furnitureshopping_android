@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
     val isThereLoggedInUser: LiveData<Boolean> = _isThereLoggedInUser
 
 
-    private fun getUserByEmail(email: String) {
+    fun getUserByEmail(email: String) {
         viewModelScope.launch {
             val response = repository.getUserByEmail(email)
             if (response.isSuccessful && response.body() != null) {
@@ -42,9 +42,6 @@ class LoginViewModel @Inject constructor(
     fun checkFirebaseAuthentication(email: String, password: String) {
         viewModelScope.launch {
             repository.checkFirebaseAuthentication(email, password).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    getUserByEmail(email)
-                }
                 _isLoginSuccessful.value = it.isSuccessful
             }
         }
@@ -55,7 +52,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun isLoginAllowed(emailError: String?, passwordError: String?): Boolean {
-        return emailError.isNullOrEmpty() && passwordError.isNullOrEmpty()
+        return emailError.equals("null") && passwordError.equals("null")
     }
 
     // Will be used for remember me feature
