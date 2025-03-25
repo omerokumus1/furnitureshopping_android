@@ -9,7 +9,8 @@ data class ProductDetail(
     val price: Double,
     val priceUnit: String,
     val imageNames: List<String>,
-    val colorCodes: List<String>
+    val colorCodes: List<String>,
+    var isInFavoriteProducts: Boolean
     ){
     companion object{
         fun from(productDetailResponse: ProductDetailResponse?) = productDetailResponse?.let {
@@ -20,7 +21,8 @@ data class ProductDetail(
                 price = it.price ?: 0.0,
                 priceUnit = it.priceUnit ?: "",
                 imageNames = it.imageNames ?: emptyList(),
-                colorCodes = it.colorCodes ?: emptyList()
+                colorCodes = it.colorCodes ?: emptyList(),
+                isInFavoriteProducts = it.isInFavoriteProducts ?: false
             )
         }
     }
