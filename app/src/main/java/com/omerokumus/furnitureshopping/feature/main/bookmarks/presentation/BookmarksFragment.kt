@@ -38,6 +38,7 @@ class BookmarksFragment : FurnitureBaseFragment() {
 
         observeViewModel()
         initToolbar()
+        viewModel.getBookmarks()
         binding.bookmarksList.run {
             adapter =
                 BookmarkItemAdapter(
@@ -79,7 +80,7 @@ class BookmarksFragment : FurnitureBaseFragment() {
     }
 
     private fun onRemoveBookmarkItem(bookmarkItem: BookmarkItem) {
-        viewModel.removeFromBookmarks(1, bookmarkItem.id)
+        viewModel.removeFromBookmarks(bookmarkItem.id)
         bookmarkAdapter.bookmarkList.remove(bookmarkItem)
         bookmarkAdapter.notifyDataSetChanged()
     }

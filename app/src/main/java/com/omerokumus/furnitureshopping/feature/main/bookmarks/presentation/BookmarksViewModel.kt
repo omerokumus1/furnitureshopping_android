@@ -20,40 +20,41 @@ class BookmarksViewModel @Inject constructor(
     private val _bookmarks: MutableLiveData<List<BookmarkItem>> = MutableLiveData()
     val bookmarksLiveData: LiveData<List<BookmarkItem>> = _bookmarks
 
-    init {
-        if (userManager.getUserFavoriteProducts().isNotEmpty()){
-            _bookmarks.value = userManager.getUserFavoriteProducts()
-        }else{
-            getBookmarks(userManager.getUser()?.id?.toInt() ?: -1)
+
+    fun getBookmarks() {
+        val userId = userManager.getUser()?.id?.toInt()
+        userId?.let {
+            viewModelScope.launch {
+                val response = repository.getFavoriteProducts(userId)
+                if (response.isSuccessful) {
+                    response.body()
+                        ?.mapNotNull { BookmarkItem.from(it) }
+                        ?.let {
+                            _bookmarks.postValue(it)
+                            userManager.setUserFavoriteProducts(it)
+                        }
+                        ?: _bookmarks.postValue(emptyList())
+
+                } else {
+                    _bookmarks.postValue(emptyList())
+                }
+        }
 
         }
     }
 
-    private fun getBookmarks(userId: Int) {
-        viewModelScope.launch {
-            val response = repository.getFavoriteProducts(userId)
-            if (response.isSuccessful) {
-                response.body()
-                    ?.mapNotNull { BookmarkItem.from(it) }
-                    ?.let {
-                        _bookmarks.postValue(it)
-                        userManager.setUserFavoriteProducts(it) }
-                    ?: _bookmarks.postValue(emptyList())
-
-            } else {
-                _bookmarks.postValue(emptyList())
+    fun removeFromBookmarks(productId: Int) {
+        val userId = userManager.getUser()?.id?.toInt()
+        userId?.let {
+            viewModelScope.launch {
+                repository.removeFavoriteProduct(userId, productId)
             }
         }
-    }
-
-    fun removeFromBookmarks(userId: Int, productId: Int) {
         userManager.removeFavoriteProductById(productId)
-        viewModelScope.launch {
-            repository.removeFavoriteProduct(userId, productId)
-        }
+
     }
 
-    fun setBookmarksFromUserManager(){
+    fun setBookmarksFromUserManager() {
         _bookmarks.value = userManager.getUserFavoriteProducts()
 
     }
