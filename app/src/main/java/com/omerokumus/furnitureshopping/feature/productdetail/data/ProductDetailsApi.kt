@@ -6,6 +6,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProductDetailsApi {
 
@@ -16,5 +17,5 @@ interface ProductDetailsApi {
     suspend fun removeFavoriteProduct(@Path("userId") userId: Int, @Path("productId") productId: Int)
 
     @GET("/api/products/{id}")
-    suspend fun getProductById(@Path("id") productId: Int): Response<ProductDetailResponse>
+    suspend fun getProductById(@Path("id") productId: Int, @Query("userId") userId: Int): Response<ProductDetailResponse>
 }

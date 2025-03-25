@@ -42,12 +42,14 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun setBookmarkClickListener() {
         binding.bookmarkBtn.setBlockingClickListener {
-            if (viewModel.isProductBookmarkedLiveData.value == true) {
-                viewModel.setIsProductBookmarked(false)
+            if (viewModel.productDetailLiveData.value?.isInFavoriteProducts == true) {
+                viewModel.setIsInFavoriteProducts(false)
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
                 viewModel.removeFavoriteProduct(viewModel.productDetailLiveData.value?.id ?: -1)
             } else {
                 viewModel.productDetailLiveData.value?.let {
-                    viewModel.setIsProductBookmarked(true)
+                    viewModel.setIsInFavoriteProducts(true)
+                    binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
                     viewModel.addFavoriteProduct( it.id)
                 }
 
@@ -85,11 +87,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 )
                 productDescription.text = it.description
             }
-            viewModel.isProductBookmarked(viewModel.productDetailLiveData.value?.id ?: -1)
-        }
-
-        viewModel.isProductBookmarkedLiveData.observe(this){
-            if (it){
+            if (it.isInFavoriteProducts){
                 binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
             }else{
                 binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
