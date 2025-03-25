@@ -35,18 +35,24 @@ class ProductDetailViewModel @Inject constructor(
         }
     }
 
-    fun addFavoriteProduct(userId: Int, productId: Int) {
-        viewModelScope.launch {
-            repository.addFavoriteProduct(userId, productId)
+    fun addFavoriteProduct(productId: Int) {
+        val userId = userManager.getUser()?.id?.toInt()
+        userId?.let {
+            viewModelScope.launch {
+                repository.addFavoriteProduct(userId, productId)
+            }
         }
         productDetailMutableLiveData.value?.let {
             userManager.addFavoriteProduct(BookmarkItem.from(it))
         }
     }
 
-    fun removeFavoriteProduct(userId: Int, productId: Int) {
-        viewModelScope.launch {
-            repository.removeFavoriteProduct(userId, productId)
+    fun removeFavoriteProduct(productId: Int) {
+        val userId = userManager.getUser()?.id?.toInt()
+        userId?.let {
+            viewModelScope.launch {
+                repository.removeFavoriteProduct(userId, productId)
+            }
         }
         productDetailMutableLiveData.value?.let {
             userManager.removeFavoriteProduct(BookmarkItem.from(it))

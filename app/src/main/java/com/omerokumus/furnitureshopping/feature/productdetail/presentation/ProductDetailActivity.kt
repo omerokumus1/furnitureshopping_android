@@ -44,11 +44,11 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.bookmarkBtn.setBlockingClickListener {
             if (viewModel.isProductBookmarkedLiveData.value == true) {
                 viewModel.setIsProductBookmarked(false)
-                viewModel.removeFavoriteProduct(1, viewModel.productDetailLiveData.value?.id ?: -1)
+                viewModel.removeFavoriteProduct(viewModel.productDetailLiveData.value?.id ?: -1)
             } else {
                 viewModel.productDetailLiveData.value?.let {
                     viewModel.setIsProductBookmarked(true)
-                    viewModel.addFavoriteProduct(1, it.id)
+                    viewModel.addFavoriteProduct( it.id)
                 }
 
             }
