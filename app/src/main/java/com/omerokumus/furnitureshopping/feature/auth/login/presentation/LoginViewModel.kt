@@ -30,6 +30,8 @@ class LoginViewModel @Inject constructor(
             val response = repository.getUserByEmail(email)
             if (response.isSuccessful && response.body() != null) {
                 setUser(response.body()!!)
+                _isLoginSuccessful.postValue(true)
+
             }
         }
     }
@@ -42,7 +44,9 @@ class LoginViewModel @Inject constructor(
     fun checkFirebaseAuthentication(email: String, password: String) {
         viewModelScope.launch {
             repository.checkFirebaseAuthentication(email, password).addOnCompleteListener {
-                _isLoginSuccessful.value = it.isSuccessful
+                if (it.isSuccessful){
+                    getUserByEmail(email)
+                }
             }
         }
     }
