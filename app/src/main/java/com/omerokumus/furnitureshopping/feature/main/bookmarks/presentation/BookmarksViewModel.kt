@@ -17,8 +17,8 @@ class BookmarksViewModel @Inject constructor(
     private val userManager: UserManager
 ) :
     ViewModel() {
-    private val _bookmarks: MutableLiveData<List<BookmarkItem>> = MutableLiveData()
-    val bookmarksLiveData: LiveData<List<BookmarkItem>> = _bookmarks
+    private val _bookmarks: MutableLiveData<MutableList<BookmarkItem>> = MutableLiveData()
+    val bookmarksLiveData: LiveData<MutableList<BookmarkItem>> = _bookmarks
 
 
     fun getBookmarks() {
@@ -30,12 +30,12 @@ class BookmarksViewModel @Inject constructor(
                     response.body()
                         ?.mapNotNull { BookmarkItem.from(it) }
                         ?.let {
-                            _bookmarks.postValue(it)
+                            _bookmarks.postValue(it.toMutableList())
                         }
-                        ?: _bookmarks.postValue(emptyList())
+                        ?: _bookmarks.postValue(mutableListOf())
 
                 } else {
-                    _bookmarks.postValue(emptyList())
+                    _bookmarks.postValue(mutableListOf())
                 }
         }
 
@@ -43,6 +43,7 @@ class BookmarksViewModel @Inject constructor(
     }
 
     fun removeFromBookmarks(productId: Int) {
+        _bookmarks.value?.removeIf { it.id == productId }
         val userId = userManager.getUser()?.id?.toInt()
         userId?.let {
             viewModelScope.launch {
