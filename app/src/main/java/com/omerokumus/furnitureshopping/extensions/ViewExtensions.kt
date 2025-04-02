@@ -3,11 +3,14 @@ package com.omerokumus.furnitureshopping.extensions
 import android.app.Activity
 import android.content.ContextWrapper
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.view.View
+import androidx.core.graphics.toColorInt
 import androidx.navigation.findNavController
 import com.omerokumus.furnitureshopping.feature.auth.AuthActivity
 import com.omerokumus.furnitureshopping.feature.auth.login.presentation.LoginFragmentDirections
 import com.omerokumus.furnitureshopping.feature.main.MainActivity
+import java.util.regex.Pattern
 
 /**
  * Navigate from Login to SignUp Fragment
@@ -75,4 +78,16 @@ fun View.setBlockingClickListener(onClick: () -> Unit) {
         this.postDelayed({ this.isClickable = true }, 1000)
 
     }
+}
+
+fun View.setBackgroundColorIfColorFormatCorrect(colorCode: String) {
+    if (checkColorCodeFormat(colorCode)){
+        this.backgroundTintList = ColorStateList.valueOf(colorCode.toColorInt())
+    }
+}
+
+private fun checkColorCodeFormat(colorCode: String): Boolean{
+    val colorPattern = Pattern.compile("#[a-fA-F0-9]{6}")
+    val matcher = colorPattern.matcher(colorCode)
+    return matcher.matches()
 }

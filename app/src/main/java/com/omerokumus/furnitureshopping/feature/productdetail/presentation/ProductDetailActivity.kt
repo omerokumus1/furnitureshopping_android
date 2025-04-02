@@ -2,6 +2,7 @@ package com.omerokumus.furnitureshopping.feature.productdetail.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
+import com.omerokumus.furnitureshopping.extensions.setBackgroundColorIfColorFormatCorrect
 import com.omerokumus.furnitureshopping.extensions.setBlockingClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
@@ -50,7 +52,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 viewModel.productDetailLiveData.value?.let {
                     viewModel.setIsInFavoriteProducts(true)
                     binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
-                    viewModel.addFavoriteProduct( it.id)
+                    viewModel.addFavoriteProduct(it.id)
                 }
 
             }
@@ -87,13 +89,39 @@ class ProductDetailActivity : AppCompatActivity() {
                 )
                 productDescription.text = it.description
             }
-            if (it.isInFavoriteProducts){
+            if (it.isInFavoriteProducts) {
                 binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
-            }else{
+            } else {
                 binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
+            }
+
+            displayProductColors(it.colorCodes)
+        }
+    }
+
+    private fun displayProductColors(colorCodes: List<String>) {
+        if (colorCodes.size == 1) {
+            binding.run {
+                firstColor.setBackgroundColorIfColorFormatCorrect(colorCodes[0])
+                secondColorCardView.visibility = View.INVISIBLE
+                thirdColorCardView.visibility = View.INVISIBLE
+            }
+        } else if (colorCodes.size == 2) {
+            binding.run {
+                firstColor.setBackgroundColorIfColorFormatCorrect(colorCodes[0])
+                secondColor.setBackgroundColorIfColorFormatCorrect(colorCodes[1])
+                thirdColorCardView.visibility = View.INVISIBLE
+            }
+        } else if (colorCodes.size == 3) {
+            binding.run {
+                firstColor.setBackgroundColorIfColorFormatCorrect(colorCodes[0])
+                secondColor.setBackgroundColorIfColorFormatCorrect(colorCodes[1])
+                thirdColor.setBackgroundColorIfColorFormatCorrect(colorCodes[2])
             }
         }
     }
+
+
 
     private fun getCurrentLocale(configuration: Configuration): Locale {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
