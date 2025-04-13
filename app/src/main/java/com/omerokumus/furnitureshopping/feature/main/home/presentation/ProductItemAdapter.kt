@@ -38,7 +38,7 @@ class ProductItemAdapter(
             productName.text = item.name
             productPrice.text = String.format(Locale.ENGLISH, "${item.priceUnit}%.2f", item.price)
             Glide.with(root)
-                .load(Constants.BASE_URL + "products/images/" + item.mainImage)
+                .load(Constants.IMAGE_RESOURCES_BASE_URL + item.mainImage)
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.image_not_available)
                 .into(productImg)

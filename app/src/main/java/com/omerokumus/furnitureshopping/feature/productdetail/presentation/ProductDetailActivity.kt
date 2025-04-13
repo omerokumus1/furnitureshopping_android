@@ -1,4 +1,4 @@
-package com.omerokumus.furnitureshopping.feature.productdetail
+package com.omerokumus.furnitureshopping.feature.productdetail.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -10,11 +10,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omerokumus.furnitureshopping.R
-import com.omerokumus.furnitureshopping.data.BookmarkData
 import com.omerokumus.furnitureshopping.databinding.ActivityProductDetailBinding
-import com.omerokumus.furnitureshopping.feature.main.bookmarks.BookmarkItem
+import com.omerokumus.furnitureshopping.extensions.setBlockingClickListener
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
@@ -33,37 +34,26 @@ class ProductDetailActivity : AppCompatActivity() {
             insets
         }
         observeViewModel()
-        viewModel.getProductDetail(intent.getIntExtra("id", 1))
+        viewModel.getProductById(intent.getIntExtra("id", 1))
         setBackButton()
         initProductImgPager()
         setBookmarkClickListener()
     }
 
     private fun setBookmarkClickListener() {
-        binding.bookmarkBtn.setOnClickListener {
-            if (isAlreadyBookmarked()) {
-                BookmarkData.bookmarkData.removeIf { bookmarkItem -> bookmarkItem.productId == viewModel.productDetailLiveData.value?.id }
-                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
+        binding.bookmarkBtn.setBlockingClickListener {
+            if (viewModel.isProductBookmarkedLiveData.value == true) {
+                viewModel.setIsProductBookmarked(false)
+                viewModel.removeFavoriteProduct(1, viewModel.productDetailLiveData.value?.id ?: -1)
             } else {
                 viewModel.productDetailLiveData.value?.let {
-                    BookmarkData.bookmarkData.add(
-                        BookmarkItem(
-                            BookmarkData.bookmarkData.size,
-                            it.id,
-                            it.name,
-                            it.images.first(),
-                            it.price
-                        )
-                    )
-                    binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+                    viewModel.setIsProductBookmarked(true)
+                    viewModel.addFavoriteProduct(1, it.id)
                 }
+
             }
         }
     }
-
-    private fun isAlreadyBookmarked() = BookmarkData.bookmarkData.find { bookmarkItem ->
-        bookmarkItem.productId == viewModel.productDetailLiveData.value?.id
-    } != null
 
     private fun setBackButton() {
         binding.backBtnContainer.setOnClickListener {
@@ -85,7 +75,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.productDetailLiveData.observe(this) {
-            productImgPagerAdapter.productImgList = it.images
+            productImgPagerAdapter.productImgList = it.imageNames
             productImgPagerAdapter.notifyDataSetChanged()
             binding.apply {
                 productName.text = it.name
@@ -94,10 +84,15 @@ class ProductDetailActivity : AppCompatActivity() {
                     String.format(getCurrentLocale(root.resources.configuration), "%.2f", it.price)
                 )
                 productDescription.text = it.description
-                BookmarkData.bookmarkData.find { bookmarkItem -> bookmarkItem.productId == it.id }
-                    ?.let {
-                        binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
-                    }
+            }
+            viewModel.isProductBookmarked(viewModel.productDetailLiveData.value?.id ?: -1)
+        }
+
+        viewModel.isProductBookmarkedLiveData.observe(this){
+            if (it){
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark_filled)
+            }else{
+                binding.bookmarkBtn.setImageResource(R.drawable.ic_bookmark)
             }
         }
     }
